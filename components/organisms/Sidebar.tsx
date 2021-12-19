@@ -89,15 +89,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
                     aria-controls='sidebar'
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                   >
-                    <span className='sr-only'>Open sidebar</span>
                     <svg
-                      className='w-6 h-6 fill-current'
+                      className='w-6 h-6 rotate-180 fill-current'
                       viewBox='0 0 24 24'
                       xmlns='http://www.w3.org/2000/svg'
                     >
-                      <rect x='4' y='5' width='16' height='2' />
-                      <rect x='4' y='11' width='16' height='2' />
-                      <rect x='4' y='17' width='16' height='2' />
+                      <path d='M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z'></path>
                     </svg>
                   </button>
                 </div>
