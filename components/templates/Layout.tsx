@@ -16,8 +16,8 @@ const Layout = ({ children }: Props) => {
       <div className='flex overflow-hidden h-screen'>
         <div className='flex overflow-x-hidden overflow-y-auto relative flex-col flex-1'>
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-          <main className='container mx-auto'>
-            <div className='flex justify-center max-w-5xl'>
+          <main className='container mx-auto max-w-6xl'>
+            <div className='flex justify-center'>
               {/* Content */}
               <div className={`flex-auto bg-gray-100`}>{children}</div>
               <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />

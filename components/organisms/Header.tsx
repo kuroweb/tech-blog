@@ -1,3 +1,6 @@
+import Image from 'next/image';
+import Link from 'next/link';
+
 interface Props {
   sidebarOpen: Boolean;
   setSidebarOpen: Function;
@@ -12,7 +15,16 @@ const Header = ({ sidebarOpen, setSidebarOpen }: Props) => {
           <div className='flex justify-between items-center -mb-px h-16'>
             {/* Header: Left side */}
             <div className='flex'>
-              <h1>Header</h1>
+              <Link href={'/'} passHref>
+                <a>
+                  <Image
+                    src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/4957ee684a0e466b93f0caae6610cfc8/header-logo-v4.png?auto=format,compress'
+                    width={170}
+                    height={28}
+                    alt='My avatar'
+                  />
+                </a>
+              </Link>
             </div>
             {/* Header: Right side */}
             <div className='flex items-center'>

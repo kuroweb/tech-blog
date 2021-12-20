@@ -30,7 +30,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
             >
               <div className='flex items-center'>
                 <Link passHref href='/'>
-                  Dashboard
+                  Search
                 </Link>
               </div>
             </div>
@@ -41,7 +41,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
             >
               <div className='flex items-center'>
                 <Link passHref href='/'>
-                  Dashboard
+                  Categories
+                </Link>
+              </div>
+            </div>
+          </li>
+          <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0`}>
+            <div
+              className={`block text-gray-200 hover:text-white truncate transition duration-150`}
+            >
+              <div className='flex items-center'>
+                <Link passHref href='/'>
+                  Tags
                 </Link>
               </div>
             </div>
@@ -55,7 +66,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
     <>
       {/* Sidebar */}
       <div
-        className={`hidden md:flex p-4 w-72 bg-gray-400 transition-all duration-200 ease-in-out transform translate-x-0`}
+        className={`hidden md:flex p-4 min-w-[18rem] bg-gray-400 transition-all duration-200 ease-in-out transform translate-x-0`}
       >
         {menu}
       </div>
@@ -89,15 +100,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
                     aria-controls='sidebar'
                     onClick={() => setSidebarOpen(!sidebarOpen)}
                   >
-                    <span className='sr-only'>Open sidebar</span>
                     <svg
-                      className='w-6 h-6 fill-current'
+                      className='w-6 h-6 rotate-180 fill-current'
                       viewBox='0 0 24 24'
                       xmlns='http://www.w3.org/2000/svg'
                     >
-                      <rect x='4' y='5' width='16' height='2' />
-                      <rect x='4' y='11' width='16' height='2' />
-                      <rect x='4' y='17' width='16' height='2' />
+                      <path d='M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z'></path>
                     </svg>
                   </button>
                 </div>
