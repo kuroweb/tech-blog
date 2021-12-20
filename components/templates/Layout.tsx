@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import React, { ReactNode, useState, useEffect } from 'react';
 
 import Header from '../organisms/Header';
@@ -18,7 +17,6 @@ const Layout = ({ children }: Props) => {
           <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
           <main className='container mx-auto max-w-6xl'>
             <div className='flex justify-center'>
-              {/* Content */}
               <div className={`flex-auto bg-gray-100`}>{children}</div>
               <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
             </div>
