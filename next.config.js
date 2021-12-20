@@ -3,7 +3,7 @@
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ['images.microcms-assets.io'],
+    domains: ['images.microcms-assets.io', 'flowbite.com'],
   },
 };
 

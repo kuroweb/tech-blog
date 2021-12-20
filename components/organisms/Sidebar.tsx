@@ -30,7 +30,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
             >
               <div className='flex items-center'>
                 <Link passHref href='/'>
-                  Dashboard
+                  Search
                 </Link>
               </div>
             </div>
@@ -41,7 +41,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
             >
               <div className='flex items-center'>
                 <Link passHref href='/'>
-                  Dashboard
+                  Categories
+                </Link>
+              </div>
+            </div>
+          </li>
+          <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0`}>
+            <div
+              className={`block text-gray-200 hover:text-white truncate transition duration-150`}
+            >
+              <div className='flex items-center'>
+                <Link passHref href='/'>
+                  Tags
                 </Link>
               </div>
             </div>
@@ -55,7 +66,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
     <>
       {/* Sidebar */}
       <div
-        className={`hidden md:flex p-4 w-72 bg-gray-400 transition-all duration-200 ease-in-out transform translate-x-0`}
+        className={`hidden md:flex p-4 min-w-[18rem] bg-gray-400 transition-all duration-200 ease-in-out transform translate-x-0`}
       >
         {menu}
       </div>
