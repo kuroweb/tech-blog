@@ -10,4 +10,5 @@ export type BlogResponse = ContentResponse<{
   };
   body: string;
   tags: TagResponse[];
+  createdAt: Date;
 }>;

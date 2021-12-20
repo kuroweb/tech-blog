@@ -3,10 +3,10 @@ import { useRouter } from 'next/router';
 
 import React, { useEffect } from 'react';
 
-interface Props {
+type Props = {
   sidebarOpen: Boolean;
   setSidebarOpen: Function;
-}
+};
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
   const router = useRouter();

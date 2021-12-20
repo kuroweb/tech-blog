@@ -1,3 +1,4 @@
+import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
 import { BlogResponse } from '../../types/blog';
@@ -7,6 +8,11 @@ type blogProps = {
 };
 
 const Card = ({ blog }: blogProps) => {
+  const format = (str: string) => {
+    const day = moment(str);
+    return day.format('YYYY-MM-DD');
+  };
+
   return (
     <>
       <div className='p-2 w-1/2 md:w-1/3'>
@@ -27,17 +33,19 @@ const Card = ({ blog }: blogProps) => {
                 {blog.title}
               </Link>
             </h1>
-
-            {blog.tags.map((tag) => (
-              <button
-                key={tag.id}
-                className='inline-block py-0.5 px-2 mr-1 mb-1 text-xs text-blue-700 hover:text-white bg-transparent hover:bg-blue-500 rounded-xl border border-blue-500 hover:border-transparent'
-              >
-                <Link passHref href={'/blogs/' + blog.id}>
-                  {tag.name}
-                </Link>
-              </button>
-            ))}
+            <p className='text-xs text-gray-500'>{format(blog.createdAt)}</p>
+            <div className='flex-wrap mt-2'>
+              {blog.tags.map((tag) => (
+                <button
+                  key={tag.id}
+                  className='py-0.5 px-2 mr-1 mb-1 text-xs text-blue-700 hover:text-white bg-transparent hover:bg-blue-500 rounded-xl border border-blue-500 hover:border-transparent'
+                >
+                  <Link passHref href={'/blogs/' + blog.id}>
+                    {tag.name}
+                  </Link>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
