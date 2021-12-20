@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
 
   const blogListPromise = client.get<BlogListResponse>({
     endpoint: 'blogs',
-    queries: { fields: 'id,title,thumbnail,tags' },
+    queries: { fields: 'id,title,thumbnail,tags,createdAt' },
   });
 
   const [siteData, blogList] = await Promise.all([siteDataPromise, blogListPromise]);
