@@ -7,5 +7,5 @@ export const isDraft = (arg: any): arg is Draft => {
     return false;
   }
 
-  return typeof arg.draftKey === "string";
+  return typeof arg.draftKey === 'string';
 };
