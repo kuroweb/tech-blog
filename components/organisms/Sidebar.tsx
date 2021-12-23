@@ -19,12 +19,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
   const menu = (
     <div className='space-y-8'>
       <div>
-        <ul className='mt-3'>
-          <li
-            className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname === '/' && 'bg-gray-900'}`}
-          >
+        <ul className='p-3'>
+          <li className={`px-3 py-2 rounded-md last:mb-0 ${pathname === '/' && 'bg-gray-900'}`}>
             <div
-              className={`block text-gray-200 hover:text-white truncate transition duration-150 ${
+              className={`block text-gray-200 hover:text-gray-900 truncate transition duration-150 ${
                 pathname === '/' && 'hover:text-gray-200'
               }`}
             >
@@ -37,7 +35,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
           </li>
           <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0`}>
             <div
-              className={`block text-gray-200 hover:text-white truncate transition duration-150`}
+              className={`block text-gray-500 hover:text-gray-900 truncate transition duration-150`}
             >
               <div className='flex items-center'>
                 <Link passHref href='/'>
@@ -48,7 +46,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
           </li>
           <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0`}>
             <div
-              className={`block text-gray-200 hover:text-white truncate transition duration-150`}
+              className={`block text-gray-500 hover:text-gray-900 truncate transition duration-150`}
             >
               <div className='flex items-center'>
                 <Link passHref href='/'>
@@ -66,7 +64,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
     <>
       {/* Sidebar */}
       <div
-        className={`hidden md:flex p-4 min-w-[18rem] bg-gray-400 transition-all duration-200 ease-in-out transform translate-x-0`}
+        className={`hidden md:flex md:flex-col p-4 w-screen max-w-[18rem] bg-gray-400 transition-all duration-200 ease-in-out transform translate-x-0`}
       >
         {menu}
       </div>
@@ -89,9 +87,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
             <div className='px-4 sm:px-6 lg:px-8'>
               <div className='flex justify-between items-center -mb-px h-16'>
                 {/* Header: Left side */}
-                <div className='flex'>
-                  <h1>Drawer</h1>
-                </div>
+                <div className='flex'></div>
                 {/* Header: Right side */}
                 <div className='flex items-center'>
                   {/* Hamburger button */}

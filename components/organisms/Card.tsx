@@ -27,14 +27,14 @@ const Card = ({ blog }: blogProps) => {
               priority
             />
           </a>
-          <div className='p-4'>
+          <div className='p-4 pt-2'>
             <h1 className='mb-2 font-bold tracking-tight text-gray-900'>
               <Link passHref href={'/blogs/' + blog.id}>
                 {blog.title}
               </Link>
             </h1>
             <p className='text-xs text-gray-500'>{format(blog.createdAt)}</p>
-            <div className='flex-wrap mt-2'>
+            <div className='flex flex-wrap mt-2'>
               {blog.tags.map((tag) => (
                 <button
                   key={tag.id}
