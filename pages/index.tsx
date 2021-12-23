@@ -41,7 +41,7 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       <div className='py-8 px-4 sm:px-6 lg:px-8 w-full'>
-        <h1>Home</h1>
+        <h1 className='p-2 text-xl font-bold'>Posts</h1>
         <div className='flex flex-wrap'>
           {blogList.contents.map((blog) => (
             <Card blog={blog} key={blog.id} />
