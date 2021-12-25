@@ -10,6 +10,7 @@
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.5",
     "d": "^1.0.1",
     "microcms-js-sdk": "^2.0.0",
     "moment": "^2.29.1",
