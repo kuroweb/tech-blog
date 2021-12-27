@@ -1,10 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-interface Props {
+type Props = {
   sidebarOpen: Boolean;
   setSidebarOpen: Function;
-}
+};
 
 const Header = ({ sidebarOpen, setSidebarOpen }: Props) => {
   return (
