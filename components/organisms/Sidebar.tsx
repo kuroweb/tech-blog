@@ -53,13 +53,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
         </div>
       </div>
 
-      <div className='p-4 mb-4 bg-white rounded-lg'>
+      {/* <div className='p-4 mb-4 bg-white rounded-lg'>
         <p className='text-lg'>Categories</p>
         <p>test</p>
-      </div>
+      </div> */}
 
-      <div className={'p-4 mb-4 bg-white rounded-lg'}>
-        <p className='text-lg'>Tags</p>
+      <div className={'p-4 bg-white rounded-lg'}>
+        <p className='pb-2 font-bold'>Tags</p>
         {tagList.contents.map((tag) => (
           <TagButton tag={tag} key={tag.id} />
         ))}
