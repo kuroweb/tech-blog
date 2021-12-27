@@ -19,7 +19,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
   });
 
   const menu = (
-    <div className='flex flex-col p-4'>
+    <div className='flex flex-col px-4 pt-8'>
       <div className='mb-4'>
         <div className='flex items-center bg-white rounded-lg' x-data="{ search: '' }">
           <div>
@@ -72,7 +72,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
       {/* Sidebar */}
       <div
         className={
-          'hidden md:flex md:flex-col pt-4 w-screen max-w-[18rem] transition-all duration-200 ease-in-out transform translate-x-0'
+          'hidden md:flex md:flex-col w-screen max-w-[18rem] transition-all duration-200 ease-in-out transform translate-x-0'
         }
       >
         {menu}
