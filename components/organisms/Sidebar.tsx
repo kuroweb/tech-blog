@@ -27,7 +27,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
               type='search'
               className='py-1 px-4 text-gray-900 focus:outline-none'
               placeholder='search'
-              x-model='search'
             />
           </div>
           <div>
@@ -55,12 +54,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
       </div>
 
       <div className='p-4 mb-4 bg-white rounded-lg'>
-        <h2>Categories</h2>
+        <p className='text-lg'>Categories</p>
         <p>test</p>
       </div>
 
       <div className={'p-4 mb-4 bg-white rounded-lg'}>
-        <h2>Tags</h2>
+        <p className='text-lg'>Tags</p>
         {tagList.contents.map((tag) => (
           <TagButton tag={tag} key={tag.id} />
         ))}
