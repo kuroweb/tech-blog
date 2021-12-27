@@ -1,14 +1,16 @@
-import Link from 'next/link';
 import { useRouter } from 'next/router';
-
 import React, { useEffect } from 'react';
+import { TagListResponse } from '../../types/tag';
+
+import TagButton from '../organisms/TagButton';
 
 type Props = {
   sidebarOpen: Boolean;
   setSidebarOpen: Function;
+  tagList: TagListResponse;
 };
 
-const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
+const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
   const router = useRouter();
   const pathname = router.pathname;
 
@@ -17,45 +19,50 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
   });
 
   const menu = (
-    <div className='space-y-8'>
-      <div>
-        <ul className='p-3'>
-          <li className={`px-3 py-2 rounded-md last:mb-0 ${pathname === '/' && 'bg-gray-900'}`}>
-            <div
-              className={`block text-gray-200 hover:text-gray-900 truncate transition duration-150 ${
-                pathname === '/' && 'hover:text-gray-200'
-              }`}
+    <div className='flex flex-col p-4'>
+      <div className='mb-4'>
+        <div className='flex items-center bg-white rounded-lg' x-data="{ search: '' }">
+          <div>
+            <input
+              type='search'
+              className='py-1 px-4 text-gray-900 focus:outline-none'
+              placeholder='search'
+            />
+          </div>
+          <div>
+            <button
+              type='submit'
+              className='flex justify-center items-center w-12 h-12 text-gray-100 bg-gray-600 rounded-lg'
             >
-              <div className='flex items-center'>
-                <Link passHref href='/'>
-                  Search
-                </Link>
-              </div>
-            </div>
-          </li>
-          <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0`}>
-            <div
-              className={`block text-gray-500 hover:text-gray-900 truncate transition duration-150`}
-            >
-              <div className='flex items-center'>
-                <Link passHref href='/'>
-                  Categories
-                </Link>
-              </div>
-            </div>
-          </li>
-          <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0`}>
-            <div
-              className={`block text-gray-500 hover:text-gray-900 truncate transition duration-150`}
-            >
-              <div className='flex items-center'>
-                <Link passHref href='/'>
-                  Tags
-                </Link>
-              </div>
-            </div>
-          </li>
-        </ul>
+              <svg
+                className='w-5 h-5'
+                stroke='white'
+                fill='none'
+                viewBox='0 0 24 24'
+                xmlns='http://www.w3.org/2000/svg'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth='2'
+                  d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className='p-4 mb-4 bg-white rounded-lg'>
+        <p className='text-lg'>Categories</p>
+        <p>test</p>
+      </div>
+
+      <div className={'p-4 mb-4 bg-white rounded-lg'}>
+        <p className='text-lg'>Tags</p>
+        {tagList.contents.map((tag) => (
+          <TagButton tag={tag} key={tag.id} />
+        ))}
       </div>
     </div>
   );
@@ -64,27 +71,29 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
     <>
       {/* Sidebar */}
       <div
-        className={`hidden md:flex md:flex-col p-4 w-screen max-w-[18rem] bg-gray-400 transition-all duration-200 ease-in-out transform translate-x-0`}
+        className={
+          'hidden md:flex md:flex-col pt-4 w-screen max-w-[18rem] transition-all duration-200 ease-in-out transform translate-x-0'
+        }
       >
         {menu}
       </div>
       {/* Drawer */}
       <div
         className={
-          ' fixed overflow-hidden z-50 bg-gray-900 bg-opacity-25 inset-0 transform ease-in-out ' +
+          'fixed overflow-hidden z-50 bg-gray-900 bg-opacity-25 inset-0 transform ease-in-out' +
           (sidebarOpen
             ? ' transition-opacity opacity-100 duration-500 translate-x-0  '
-            : ' transition-all delay-500 opacity-0 translate-x-full  ')
+            : ' transition-all delay-500 opacity-0 translate-x-full ')
         }
       >
         <div
           className={
-            ' w-screen max-w-[18rem] right-0 absolute bg-white h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform  ' +
-            (sidebarOpen ? ' translate-x-0 ' : ' translate-x-full ')
+            'w-screen max-w-[18rem] right-0 absolute bg-gray-200 h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform' +
+            (sidebarOpen ? ' translate-x-0' : ' translate-x-full')
           }
         >
-          <div className='flex overflow-y-scroll relative flex-col pb-10 space-y-6 w-screen max-w-[18rem] h-full'>
-            <div className='px-4 sm:px-6 lg:px-8'>
+          <div className='flex overflow-y-scroll relative flex-col w-screen max-w-[18rem] h-full'>
+            <div className='px-4'>
               <div className='flex justify-between items-center -mb-px h-16'>
                 {/* Header: Left side */}
                 <div className='flex'></div>
@@ -106,8 +115,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: Props) => {
                   </button>
                 </div>
               </div>
-              {menu}
             </div>
+            {menu}
           </div>
         </div>
         <div
