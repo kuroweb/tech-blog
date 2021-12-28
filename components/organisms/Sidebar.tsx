@@ -88,7 +88,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
           'hidden md:flex md:flex-col transition-all duration-200 ease-in-out transform translate-x-0'
         }
       >
-        <div className='pt-4 md:pt-8 sm:pr-4 md:pr-8 max-w-[18rem]'>{menu}</div>
+        <div className='pt-4 md:pt-8 sm:pr-4 md:pr-8 max-w-[20rem]'>{menu}</div>
       </div>
       {/* Drawer */}
       <div
