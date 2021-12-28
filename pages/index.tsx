@@ -1,5 +1,4 @@
 import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
-import React from 'react';
 
 import Card from '../components/organisms/Card';
 import Layout from '../components/templates/Layout';
@@ -55,7 +54,7 @@ const Page: NextPage<PageProps> = (props) => {
     <>
       <Layout tagList={tagList}>
         <div className='py-8 px-4 sm:px-6 lg:px-8 w-full'>
-          <h1 className='p-2 text-xl font-bold'>Posts</h1>
+          <p className='p-2 text-2xl font-bold'>Posts</p>
           <div className='flex flex-wrap'>
             {blogList.contents.map((blog) => (
               <Card blog={blog} key={blog.id} />
