@@ -40,16 +40,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
             priority
           />
           <div className='flex flex-col justify-center items-center p-4 -mt-14'>
-            <a href='#' className='block relative'>
-              <Image
-                alt='profil'
-                src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/3379dcd3663344bf8f03e3fc46e09a30/r79iCrKh_400x400.jpg'
-                className='object-cover mx-auto w-16 h-16 rounded-full'
-                width={60}
-                height={60}
-                priority
-              />
-            </a>
+            <Image
+              alt='profil'
+              src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/3379dcd3663344bf8f03e3fc46e09a30/r79iCrKh_400x400.jpg'
+              className='object-cover mx-auto w-16 h-16 rounded-full'
+              width={60}
+              height={60}
+              priority
+            />
             <p className='mt-2 text-xl font-medium text-gray-800 '>KURO</p>
             <p className='flex items-center text-xs text-gray-400'>
               <svg
