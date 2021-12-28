@@ -5,6 +5,17 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+import {
+  TwitterShareButton,
+  FacebookShareButton,
+  LineShareButton,
+  HatenaShareButton,
+  TwitterIcon,
+  FacebookIcon,
+  LineIcon,
+  HatenaIcon,
+} from 'react-share';
+
 import Layout from '../../components/templates/Layout';
 
 import { BlogResponse } from '../../types/blog';
@@ -19,6 +30,7 @@ type StaticProps = {
   blog: BlogResponse;
   tagList: TagListResponse;
   draftKey?: string;
+  domain: string | undefined;
 };
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -57,7 +69,12 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
     const [blog, tagList] = await Promise.all([blogContentPromise, tagListPromise]);
 
     return {
-      props: { blog, ...draftKey, tagList },
+      props: {
+        blog,
+        tagList,
+        ...draftKey,
+        domain: process.env.DOMAIN_NAME,
+      },
       revalidate: 60,
     };
   } catch (e) {
@@ -66,8 +83,9 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
 };
 
 const Page: NextPage<PageProps> = (props) => {
-  const { blog, draftKey, tagList } = props;
+  const { blog, tagList, draftKey, domain } = props;
   const router = useRouter();
+  const fullPath = `${domain}${router.asPath}`;
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -120,6 +138,28 @@ const Page: NextPage<PageProps> = (props) => {
                   __html: `${blog.body}`,
                 }}
               />
+            </div>
+            <div className='flex justify-center'>
+              <div className='p-2'>
+                <TwitterShareButton url={fullPath} title={blog.title}>
+                  <TwitterIcon size={32} round={true} />
+                </TwitterShareButton>
+              </div>
+              <div className='p-2'>
+                <FacebookShareButton url={fullPath} quote={blog.title}>
+                  <FacebookIcon size={32} round={true} />
+                </FacebookShareButton>
+              </div>
+              <div className='p-2'>
+                <LineShareButton url={fullPath} title={blog.title}>
+                  <LineIcon size={32} round={true} />
+                </LineShareButton>
+              </div>
+              <div className='p-2'>
+                <HatenaShareButton url={fullPath} title={blog.title}>
+                  <HatenaIcon size={32} round={true} />
+                </HatenaShareButton>
+              </div>
             </div>
           </div>
         </div>
