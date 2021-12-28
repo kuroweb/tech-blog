@@ -1,4 +1,7 @@
-import React, { useEffect } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { useEffect } from 'react';
 import { TagListResponse } from '../../types/tag';
 
 import SearchInput from '../organisms/SearchInput';
@@ -16,17 +19,67 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
   });
 
   const menu = (
-    <div className=''>
-      <div className='mb-4'>
+    <>
+      <div className='pb-4'>
         <SearchInput />
       </div>
-      <div className={'p-4 bg-white rounded-lg'}>
+      <div className='p-4 bg-white rounded-lg shadow-lg'>
         <p className='pb-2 font-bold'>Tags</p>
         {tagList.contents.map((tag) => (
           <TagButton tag={tag} key={tag.id} />
         ))}
       </div>
-    </div>
+      <div className='pt-4'>
+        <div className='bg-white rounded-lg shadow-lg'>
+          <Image
+            alt='profil'
+            src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/6079187ac85e4e23b67e53d1ff04e59e/4105982416-1985037-PN96-960x540-MM-100.jpg'
+            className='object-cover rounded-t-lg'
+            width={300}
+            height={130}
+            priority
+          />
+          <div className='flex flex-col justify-center items-center p-4 -mt-14'>
+            <a href='#' className='block relative'>
+              <Image
+                alt='profil'
+                src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/3379dcd3663344bf8f03e3fc46e09a30/r79iCrKh_400x400.jpg'
+                className='object-cover mx-auto w-16 h-16 rounded-full'
+                width={60}
+                height={60}
+                priority
+              />
+            </a>
+            <p className='mt-2 text-xl font-medium text-gray-800 '>KURO</p>
+            <p className='flex items-center text-xs text-gray-400'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='w-4 h-4'
+                viewBox='0 0 20 20'
+                fill='currentColor'
+              >
+                <path
+                  fillRule='evenodd'
+                  d='M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z'
+                  clipRule='evenodd'
+                />
+              </svg>
+              Tokyo
+            </p>
+            <p className='pt-2 text-xs text-gray-400'>サーバーサイドエンジニア1年目。</p>
+            <p className='text-xs text-gray-400'>学習内容やメモ書きを残します。</p>
+            <div className='flex justify-between items-center mt-4 w-full'>
+              <a
+                className='py-2 px-4 w-full text-base font-semibold text-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 shadow-md transition duration-200 ease-in focus:outline-none'
+                href='https://twitter.com/kuroweb_net'
+              >
+                Twitter
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 
   return (
