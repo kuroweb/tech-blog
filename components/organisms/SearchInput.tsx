@@ -28,10 +28,13 @@ const SearchInput = () => {
 
   return (
     <>
-      <div className='flex items-center bg-white rounded-lg' x-data="{ search: '' }">
+      <div
+        className='flex justify-between items-center bg-white rounded-lg'
+        x-data="{ search: '' }"
+      >
         <input
           type='search'
-          className='py-1 px-4 text-gray-900 focus:outline-none'
+          className='px-4 text-gray-900 focus:outline-none'
           placeholder='search'
           onChange={handleChangeKeyword}
           onKeyDown={handleKeyDownSearch}

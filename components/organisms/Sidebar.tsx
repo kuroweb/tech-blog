@@ -16,7 +16,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
   });
 
   const menu = (
-    <div className='flex flex-col px-4 pt-8'>
+    <div className='pt-4 md:pt-8'>
       <div className='mb-4'>
         <SearchInput />
       </div>
@@ -34,7 +34,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
       {/* Sidebar */}
       <div
         className={
-          'hidden md:flex md:flex-col w-screen max-w-[18rem] transition-all duration-200 ease-in-out transform translate-x-0'
+          'hidden md:flex md:flex-col transition-all duration-200 ease-in-out transform translate-x-0'
         }
       >
         {menu}
@@ -50,13 +50,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
       >
         <div
           className={
-            'w-screen max-w-[18rem] right-0 absolute bg-gray-200 h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform' +
+            'w-screen max-w-[20rem] right-0 overflow-y-scroll absolute bg-gray-200 h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform' +
             (sidebarOpen ? ' translate-x-0' : ' translate-x-full')
           }
         >
-          <div className='flex overflow-y-scroll relative flex-col w-screen max-w-[18rem] h-full'>
+          <div className='flex flex-col'>
             <div className='px-4'>
-              <div className='flex justify-between items-center -mb-px h-16'>
+              <div className='flex justify-between items-center h-16'>
                 {/* Header: Left side */}
                 <div className='flex'></div>
                 {/* Header: Right side */}
@@ -77,16 +77,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
                   </button>
                 </div>
               </div>
+              {menu}
             </div>
-            {menu}
           </div>
         </div>
-        <div
-          className='w-screen h-full cursor-pointer'
-          onClick={() => {
-            setSidebarOpen(false);
-          }}
-        ></div>
       </div>
     </>
   );
