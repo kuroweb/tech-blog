@@ -14,11 +14,13 @@ import { client } from '../../utils/api';
 import { isDraft } from '../../utils/isDraft';
 import { toStringId } from '../../utils/toStringId';
 
+// SSG
 type StaticProps = {
   blog: BlogResponse;
   tagList: TagListResponse;
   draftKey?: string;
 };
+
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 export const getStaticPaths: GetStaticPaths = async () => {

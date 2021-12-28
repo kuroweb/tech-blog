@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router';
 import { useCallback, useState } from 'react';
-// import { SearchContext } from '../../contexts/searchContext';
 
 const SearchInput = () => {
-  // const { search, setSearch } = useContext(SearchContext);
   const [search, setSearch] = useState('');
   const router = useRouter();
 
