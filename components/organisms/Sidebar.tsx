@@ -37,7 +37,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
           'hidden md:flex md:flex-col transition-all duration-200 ease-in-out transform translate-x-0'
         }
       >
-        {menu}
+        <div className='px-4 md:px-8'>{menu}</div>
       </div>
       {/* Drawer */}
       <div
@@ -81,6 +81,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
             </div>
           </div>
         </div>
+        <div
+          className='w-screen h-full cursor-pointer'
+          onClick={() => {
+            setSidebarOpen(false);
+          }}
+        ></div>
       </div>
     </>
   );
