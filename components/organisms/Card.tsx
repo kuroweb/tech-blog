@@ -19,19 +19,21 @@ const Card = ({ blog }: blogProps) => {
     <>
       <div className='p-2 w-1/2 md:w-1/3'>
         <div className='h-full bg-white rounded-lg border border-gray-200 shadow-md'>
-          <a href={'blogs/' + blog.id}>
-            <Image
-              className='object-cover rounded-t-lg'
-              src={blog.thumbnail.url}
-              alt='thumbnail'
-              width={300}
-              height={200}
-              priority
-            />
-          </a>
+          <Link href={`/blogs/${blog.id}`} as={`/blogs/${blog.id}`}>
+            <a>
+              <Image
+                className='object-cover rounded-t-lg'
+                src={blog.thumbnail.url}
+                alt='thumbnail'
+                width={300}
+                height={200}
+                priority
+              />
+            </a>
+          </Link>
           <div className='p-4 pt-2'>
             <h1 className='mb-2 font-bold tracking-tight text-gray-900'>
-              <Link passHref href={'/blogs/' + blog.id}>
+              <Link href={`/blogs/${blog.id}`} as={`/blogs/${blog.id}`}>
                 {blog.title}
               </Link>
             </h1>

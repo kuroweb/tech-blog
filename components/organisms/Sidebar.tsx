@@ -2,6 +2,7 @@ import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { TagListResponse } from '../../types/tag';
 
+import SearchInput from '../organisms/SearchInput';
 import TagButton from '../organisms/TagButton';
 
 type Props = {
@@ -21,36 +22,34 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
   const menu = (
     <div className='flex flex-col px-4 pt-8'>
       <div className='mb-4'>
-        <div className='flex items-center bg-white rounded-lg' x-data="{ search: '' }">
-          <div>
-            <input
-              type='search'
-              className='py-1 px-4 text-gray-900 focus:outline-none'
-              placeholder='search'
-            />
-          </div>
-          <div>
-            <button
-              type='submit'
-              className='flex justify-center items-center w-12 h-12 text-gray-100 bg-gray-600 rounded-lg'
+        <SearchInput></SearchInput>
+        {/* <div className='flex items-center bg-white rounded-lg' x-data="{ search: '' }">
+          <input
+            type='search'
+            className='py-1 px-4 text-gray-900 focus:outline-none'
+            placeholder='search'
+          />
+
+          <button
+            type='submit'
+            className='flex justify-center items-center w-12 h-12 text-gray-100 bg-gray-600 rounded-lg'
+          >
+            <svg
+              className='w-5 h-5'
+              stroke='white'
+              fill='none'
+              viewBox='0 0 24 24'
+              xmlns='http://www.w3.org/2000/svg'
             >
-              <svg
-                className='w-5 h-5'
-                stroke='white'
-                fill='none'
-                viewBox='0 0 24 24'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
+                d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+              ></path>
+            </svg>
+          </button>
+        </div> */}
       </div>
 
       {/* <div className='p-4 mb-4 bg-white rounded-lg'>
