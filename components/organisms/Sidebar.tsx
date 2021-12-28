@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 import { TagListResponse } from '../../types/tag';
 
@@ -12,51 +11,15 @@ type Props = {
 };
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
-  const router = useRouter();
-  const pathname = router.pathname;
-
   useEffect(() => {
     setSidebarOpen(sidebarOpen);
   });
 
   const menu = (
-    <div className='flex flex-col px-4 pt-8'>
+    <div className='pt-4 md:pt-8'>
       <div className='mb-4'>
-        <SearchInput></SearchInput>
-        {/* <div className='flex items-center bg-white rounded-lg' x-data="{ search: '' }">
-          <input
-            type='search'
-            className='py-1 px-4 text-gray-900 focus:outline-none'
-            placeholder='search'
-          />
-
-          <button
-            type='submit'
-            className='flex justify-center items-center w-12 h-12 text-gray-100 bg-gray-600 rounded-lg'
-          >
-            <svg
-              className='w-5 h-5'
-              stroke='white'
-              fill='none'
-              viewBox='0 0 24 24'
-              xmlns='http://www.w3.org/2000/svg'
-            >
-              <path
-                strokeLinecap='round'
-                strokeLinejoin='round'
-                strokeWidth='2'
-                d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
-              ></path>
-            </svg>
-          </button>
-        </div> */}
+        <SearchInput />
       </div>
-
-      {/* <div className='p-4 mb-4 bg-white rounded-lg'>
-        <p className='text-lg'>Categories</p>
-        <p>test</p>
-      </div> */}
-
       <div className={'p-4 bg-white rounded-lg'}>
         <p className='pb-2 font-bold'>Tags</p>
         {tagList.contents.map((tag) => (
@@ -71,7 +34,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
       {/* Sidebar */}
       <div
         className={
-          'hidden md:flex md:flex-col w-screen max-w-[18rem] transition-all duration-200 ease-in-out transform translate-x-0'
+          'hidden md:flex md:flex-col transition-all duration-200 ease-in-out transform translate-x-0'
         }
       >
         {menu}
@@ -87,13 +50,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
       >
         <div
           className={
-            'w-screen max-w-[18rem] right-0 absolute bg-gray-200 h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform' +
+            'w-screen max-w-[20rem] right-0 overflow-y-scroll absolute bg-gray-200 h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform' +
             (sidebarOpen ? ' translate-x-0' : ' translate-x-full')
           }
         >
-          <div className='flex overflow-y-scroll relative flex-col w-screen max-w-[18rem] h-full'>
+          <div className='flex flex-col'>
             <div className='px-4'>
-              <div className='flex justify-between items-center -mb-px h-16'>
+              <div className='flex justify-between items-center h-16'>
                 {/* Header: Left side */}
                 <div className='flex'></div>
                 {/* Header: Right side */}
@@ -114,16 +77,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
                   </button>
                 </div>
               </div>
+              {menu}
             </div>
-            {menu}
           </div>
         </div>
-        <div
-          className='w-screen h-full cursor-pointer'
-          onClick={() => {
-            setSidebarOpen(false);
-          }}
-        ></div>
       </div>
     </>
   );

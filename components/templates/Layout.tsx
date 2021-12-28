@@ -1,4 +1,4 @@
-import { ReactNode, useState, useEffect } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { TagListResponse } from '../../types/tag';
 import Header from '../organisms/Header';
