@@ -16,7 +16,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
   });
 
   const menu = (
-    <div className='pt-4 md:pt-8'>
+    <div className=''>
       <div className='mb-4'>
         <SearchInput />
       </div>
@@ -37,7 +37,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
           'hidden md:flex md:flex-col transition-all duration-200 ease-in-out transform translate-x-0'
         }
       >
-        <div className='px-4 md:px-8'>{menu}</div>
+        <div className='pt-4 md:pt-8 sm:pr-4 md:pr-8 max-w-[18rem]'>{menu}</div>
       </div>
       {/* Drawer */}
       <div
@@ -77,7 +77,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
                   </button>
                 </div>
               </div>
-              {menu}
+              <div className='pt-4'>{menu}</div>
             </div>
           </div>
         </div>
