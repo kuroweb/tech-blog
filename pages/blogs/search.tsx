@@ -48,7 +48,7 @@ const Page: NextPage<ServerSidePageProps> = (props) => {
   const { blogList, tagList, keyword } = props;
   return (
     <>
-      <Layout tagList={tagList}>
+      <Layout tagList={tagList} meta={{}}>
         <div className='py-8 px-4 sm:px-6 lg:px-8 w-full'>
           <p className='p-2 text-2xl font-bold'>{`「${keyword}」の検索結果`}</p>
           <div className='flex flex-wrap'>

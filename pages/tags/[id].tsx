@@ -70,7 +70,7 @@ const Page: NextPage<PageProps> = (props) => {
   const { blogList, tagList, tag } = props;
   return (
     <>
-      <Layout tagList={tagList}>
+      <Layout tagList={tagList} meta={{}}>
         <div className='py-8 px-4 sm:px-6 lg:px-8 w-full'>
           <h1 className='p-2 text-2xl font-bold'>{`「${tag.name}」の記事一覧`}</h1>
           <div className='flex flex-wrap'>
