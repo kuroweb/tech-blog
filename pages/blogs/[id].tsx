@@ -30,7 +30,7 @@ type StaticProps = {
   blog: BlogResponse;
   tagList: TagListResponse;
   draftKey?: string;
-  domain: string | undefined;
+  domain?: string;
 };
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -86,6 +86,15 @@ const Page: NextPage<PageProps> = (props) => {
   const { blog, tagList, draftKey, domain } = props;
   const router = useRouter();
   const fullPath = `${domain}${router.asPath}`;
+  const body = blog.body.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
+  const description = body.substr(0, 120);
+
+  const meta = {
+    pageTitle: blog.title,
+    pageDescription: description,
+    pagePath: fullPath,
+    pageImg: blog.thumbnail.url,
+  };
 
   if (router.isFallback) {
     return <div>Loading...</div>;
@@ -93,7 +102,7 @@ const Page: NextPage<PageProps> = (props) => {
 
   return (
     <>
-      <Layout tagList={tagList}>
+      <Layout tagList={tagList} meta={meta}>
         {draftKey && (
           <div>
             現在プレビューモードで閲覧中です。
