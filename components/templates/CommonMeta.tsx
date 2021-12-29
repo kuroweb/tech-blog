@@ -32,7 +32,7 @@ const CommonMeta = ({ meta }: Props) => {
       <meta property='og:image:width' content={String(imgWidth)} />
       <meta property='og:image:height' content={String(imgHeight)} />
       <meta name='twitter:card' content='summary' />
-      <meta name='twitter:site' content='kuroweb.net' />
+      <meta name='twitter:site' content='@kuroweb_net' />
       <meta name='twitter:url' content={url} />
       <meta name='twitter:title' content={title} />
       <meta name='twitter:description' content={description} />
