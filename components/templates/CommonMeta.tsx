@@ -7,7 +7,6 @@ type Props = {
 };
 
 const CommonMeta = ({ meta }: Props) => {
-  console.log(meta);
   const defaultTitle = 'kuroweb.net';
   const defaultDescription = 'kuroweb.net';
 
