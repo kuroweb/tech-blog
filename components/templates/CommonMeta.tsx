@@ -7,6 +7,7 @@ type Props = {
 };
 
 const CommonMeta = ({ meta }: Props) => {
+  console.log(meta);
   const defaultTitle = 'kuroweb.net';
   const defaultDescription = 'kuroweb.net';
 
@@ -30,6 +31,12 @@ const CommonMeta = ({ meta }: Props) => {
       <meta property='og:image' content={imgUrl} />
       <meta property='og:image:width' content={String(imgWidth)} />
       <meta property='og:image:height' content={String(imgHeight)} />
+      <meta name='twitter:card' content='summary' />
+      <meta name='twitter:site' content='kuroweb.net' />
+      <meta name='twitter:url' content={url} />
+      <meta name='twitter:title' content={title} />
+      <meta name='twitter:description' content={description} />
+      <meta name='twitter:image' content={url} />
       <link rel='canonical' href={url} />
     </Head>
   );
