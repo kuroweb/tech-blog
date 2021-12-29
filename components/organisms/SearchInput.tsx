@@ -1,9 +1,11 @@
 import { useRouter } from 'next/router';
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useContext } from 'react';
+import { SidebarContext } from '../../contexts/sidebarContext';
 
 const SearchInput = () => {
   const [search, setSearch] = useState('');
   const router = useRouter();
+  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
 
   const handleChangeKeyword = useCallback(
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -15,15 +17,17 @@ const SearchInput = () => {
 
   const handleClickSearchButton = useCallback(() => {
     void router.push(`/blogs/search?keyword=${search}`);
-  }, [search, router]);
+    setSidebarOpen(false);
+  }, [router, search, setSidebarOpen]);
 
   const handleKeyDownSearch = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       if (e.key === 'Enter') {
         void router.push(`/blogs/search?keyword=${search}`);
+        setSidebarOpen(false);
       }
     },
-    [search, router],
+    [router, search, setSidebarOpen],
   );
 
   return (

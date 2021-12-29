@@ -1,12 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { SidebarContext } from '../../contexts/sidebarContext';
 
-type Props = {
-  sidebarOpen: Boolean;
-  setSidebarOpen: Function;
-};
+const Header = () => {
+  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
 
-const Header = ({ sidebarOpen, setSidebarOpen }: Props) => {
   return (
     <>
       {/* Header */}

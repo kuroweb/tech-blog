@@ -1,22 +1,16 @@
 import Image from 'next/image';
-import Link from 'next/link';
-
-import { useEffect } from 'react';
+import { useContext } from 'react';
+import { SidebarContext } from '../../contexts/sidebarContext';
 import { TagListResponse } from '../../types/tag';
-
 import SearchInput from '../organisms/SearchInput';
 import TagButton from '../organisms/TagButton';
 
 type Props = {
-  sidebarOpen: Boolean;
-  setSidebarOpen: Function;
   tagList: TagListResponse;
 };
 
-const Sidebar = ({ sidebarOpen, setSidebarOpen, tagList }: Props) => {
-  useEffect(() => {
-    setSidebarOpen(sidebarOpen);
-  });
+const Sidebar = ({ tagList }: Props) => {
+  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
 
   const menu = (
     <>
