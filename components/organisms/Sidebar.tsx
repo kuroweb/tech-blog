@@ -82,7 +82,7 @@ const Sidebar = ({ tagList }: Props) => {
           'hidden md:flex md:flex-col transition-all duration-200 ease-in-out transform translate-x-0'
         }
       >
-        <div className='pt-4 md:pt-8 sm:pr-4 md:pr-8 max-w-[20rem]'>{menu}</div>
+        <div className='pt-4 md:pt-8 sm:pr-4 md:pr-8 w-[20rem]'>{menu}</div>
       </div>
       {/* Drawer */}
       <div
@@ -95,7 +95,7 @@ const Sidebar = ({ tagList }: Props) => {
       >
         <div
           className={
-            'w-screen max-w-[20rem] right-0 overflow-y-scroll absolute bg-gray-200 h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform' +
+            'w-[20rem] right-0 overflow-y-scroll absolute bg-gray-200 h-full shadow-xl delay-400 duration-500 ease-in-out transition-all transform' +
             (sidebarOpen ? ' translate-x-0' : ' translate-x-full')
           }
         >

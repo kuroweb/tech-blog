@@ -93,7 +93,7 @@ const Page: NextPage<PageProps> = (props) => {
     pageTitle: blog.title,
     pageDescription: description,
     pagePath: fullPath,
-    pageImg: blog.thumbnail.url,
+    pageImg: blog.thumbnail ? blog.thumbnail.url : '',
   };
 
   if (router.isFallback) {
@@ -131,14 +131,25 @@ const Page: NextPage<PageProps> = (props) => {
               <p className='absolute right-5 bottom-5 z-10 text-lg md:text-xl font-bold text-white'>
                 {moment(blog.publishedAt).format('YYYY-MM-DD')}
               </p>
-              <Image
-                className='object-cover md:rounded-t-lg brightness-[30%]'
-                src={blog.thumbnail.url}
-                width={800}
-                height={450}
-                priority
-                alt='thumbnail'
-              />
+              {blog.thumbnail ? (
+                <Image
+                  className='object-cover md:rounded-t-lg brightness-[30%]'
+                  src={blog.thumbnail.url}
+                  width={800}
+                  height={450}
+                  priority
+                  alt='thumbnail'
+                />
+              ) : (
+                <Image
+                  className='object-cover md:rounded-t-lg brightness-[30%]'
+                  src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/c31c6dc3379f4c0f963a30ec5cebf2d9/icon_default_image.svg'
+                  width={800}
+                  height={450}
+                  priority
+                  alt='thumbnail'
+                />
+              )}
             </div>
             <div className='p-4 md:p-8'>
               <div

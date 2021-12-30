@@ -17,20 +17,35 @@ const Card = ({ blog }: blogProps) => {
 
   return (
     <>
-      <div className='p-2 w-1/2 md:w-1/3'>
+      <div className='p-2 md:p-4 w-1/2'>
         <div className='h-full bg-white rounded-lg border border-gray-200 shadow-md'>
-          <Link href={`/blogs/${blog.id}`} as={`/blogs/${blog.id}`}>
-            <a>
-              <Image
-                className='object-cover rounded-t-lg'
-                src={blog.thumbnail.url}
-                alt='thumbnail'
-                width={300}
-                height={200}
-                priority
-              />
-            </a>
-          </Link>
+          {blog.thumbnail ? (
+            <Link href={`/blogs/${blog.id}`} as={`/blogs/${blog.id}`}>
+              <a>
+                <Image
+                  className='object-cover rounded-t-lg'
+                  src={blog.thumbnail.url}
+                  alt='thumbnail'
+                  width={500}
+                  height={250}
+                  priority
+                />
+              </a>
+            </Link>
+          ) : (
+            <Link href={`/blogs/${blog.id}`} as={`/blogs/${blog.id}`}>
+              <a>
+                <Image
+                  className='object-cover rounded-t-lg'
+                  src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/c31c6dc3379f4c0f963a30ec5cebf2d9/icon_default_image.svg'
+                  alt='thumbnail'
+                  width={500}
+                  height={250}
+                  priority
+                />
+              </a>
+            </Link>
+          )}
           <div className='p-4 pt-2'>
             <h1 className='mb-2 font-bold tracking-tight text-gray-900'>
               <Link href={`/blogs/${blog.id}`} as={`/blogs/${blog.id}`}>

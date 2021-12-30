@@ -1,14 +1,14 @@
-import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next';
+import type { NextPage, GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 
-import Card from '../components/organisms/Card';
-import Layout from '../components/templates/Layout';
+import Card from '../../../components/organisms/Card';
+import Layout from '../../../components/templates/Layout';
 
-import { BlogListResponse } from '../types/blog';
-import { SiteDataResponse } from '../types/siteData';
-import { TagListResponse } from '../types/tag';
-import { client } from '../utils/api';
+import { BlogListResponse } from '../../../types/blog';
+import { SiteDataResponse } from '../../../types/siteData';
+import { TagListResponse } from '../../../types/tag';
+import { client } from '../../../utils/api';
 
 type StaticProps = {
   siteData: SiteDataResponse;
@@ -18,17 +18,47 @@ type StaticProps = {
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-export const getStaticProps: GetStaticProps<StaticProps> = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
+  // pagination
+  const blogListPromise = client.get<BlogListResponse>({
+    endpoint: 'blogs',
+    queries: {
+      offset: 0,
+      limit: 10,
+    },
+  });
+
+  const [blogList] = await Promise.all([blogListPromise]);
+
+  const paths = [...Array(Math.ceil(blogList.totalCount / blogList.limit))]
+    .map((_, i) => i + 1)
+    .map((offset) => `/blogs/page/${offset}`);
+
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps<StaticProps> = async ({ params }) => {
+  // pagination
+  const offset = params?.offset ? Number(params?.offset) : 1;
+
+  const query = {
+    offset: Number((offset - 1) * 10),
+    limit: 10,
+  };
+
+  // microcms
   const siteDataPromise = client.get<SiteDataResponse>({
     endpoint: 'sitedata',
-    queries: { fields: 'title' },
+    queries: {
+      fields: 'title',
+    },
   });
 
   const blogListPromise = client.get<BlogListResponse>({
     endpoint: 'blogs',
     queries: {
       fields: 'id,title,thumbnail,tags,createdAt',
-      limit: 10,
+      ...query,
     },
   });
 
@@ -57,7 +87,7 @@ const Page: NextPage<PageProps> = (props) => {
   const { siteData, blogList, tagList } = props;
 
   const router = useRouter();
-  const currentPage = 1;
+  const currentPage = router.query.offset ? Number(router.query.offset) : 1;
   const totalPage = Math.ceil(blogList.totalCount / blogList.limit);
   const startPage = currentPage == 1 ? 1 : currentPage - 1;
   const endPage = currentPage == totalPage ? currentPage : currentPage + 1;
