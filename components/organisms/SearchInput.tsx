@@ -46,7 +46,7 @@ const SearchInput = () => {
 
         <button
           type='submit'
-          className='flex justify-center items-center w-12 h-12 text-gray-100 bg-gray-600 rounded-lg shadow-lg'
+          className='flex justify-center items-center w-12 h-12 text-gray-100 bg-gray-600 hover:bg-gray-400 rounded-lg shadow-lg'
           onClick={handleClickSearchButton}
         >
           <svg

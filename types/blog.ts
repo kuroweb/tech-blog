@@ -4,7 +4,7 @@ export type BlogListResponse = ListContentsResponse<BlogResponse>;
 
 export type BlogResponse = ContentResponse<{
   title: string;
-  thumbnail: {
+  thumbnail?: {
     url: string;
   };
   body: string;
