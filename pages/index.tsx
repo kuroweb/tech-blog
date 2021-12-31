@@ -27,7 +27,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
   const blogListPromise = client.get<BlogListResponse>({
     endpoint: 'blogs',
     queries: {
-      fields: 'id,title,thumbnail,tags,createdAt',
+      fields: 'id,title,thumbnail,tags,createdAt,updatedAt',
       limit: 10,
     },
   });
@@ -55,6 +55,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
 
 const Page: NextPage<PageProps> = (props) => {
   const { siteData, blogList, tagList } = props;
+  console.log(blogList);
 
   const router = useRouter();
   const currentPage = 1;

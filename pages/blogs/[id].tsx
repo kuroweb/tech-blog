@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
       endpoint: 'blogs',
       contentId: id,
       queries: {
-        fields: 'id,title,body,publishedAt,tags,thumbnail',
+        fields: 'id,title,body,updatedAt,tags,thumbnail',
         ...draftKey,
       },
     });
@@ -121,7 +121,7 @@ const Page: NextPage<PageProps> = (props) => {
               <svg
                 className='absolute right-32 md:right-36 bottom-6 z-10 w-5 h-5'
                 stroke='cyan'
-                strokeWidth='2'
+                strokeWidth='3'
                 fill='none'
                 viewBox='0 0 24 24'
                 xmlns='http://www.w3.org/2000/svg'
@@ -129,7 +129,7 @@ const Page: NextPage<PageProps> = (props) => {
                 <path d='M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' />
               </svg>
               <p className='absolute right-5 bottom-5 z-10 text-lg md:text-xl font-bold text-white'>
-                {moment(blog.publishedAt).format('YYYY-MM-DD')}
+                {moment(blog.updatedAt).format('YYYY-MM-DD')}
               </p>
               {blog.thumbnail ? (
                 <Image
