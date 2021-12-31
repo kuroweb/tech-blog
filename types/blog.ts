@@ -13,4 +13,5 @@ export type BlogResponse = ContentResponse<{
     name: string;
   }[];
   createdAt: Date;
+  updatedAt: Date;
 }>;
