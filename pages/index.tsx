@@ -55,7 +55,6 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
 
 const Page: NextPage<PageProps> = (props) => {
   const { siteData, blogList, tagList } = props;
-  console.log(blogList);
 
   const router = useRouter();
   const currentPage = 1;
