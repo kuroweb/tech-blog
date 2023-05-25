@@ -60,14 +60,6 @@ const Sidebar = ({ tagList }: Props) => {
             </p>
             <p className='pt-2 text-xs text-gray-400'>サーバーサイドエンジニア1年目。</p>
             <p className='text-xs text-gray-400'>学習内容やメモ書きを残します。</p>
-            <div className='flex justify-between items-center mt-4 w-full'>
-              <a
-                className='py-2 px-4 w-full text-base font-semibold text-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-indigo-200 shadow-md transition duration-200 ease-in focus:outline-none'
-                href='https://twitter.com/kuroweb_net'
-              >
-                Twitter
-              </a>
-            </div>
           </div>
         </div>
       </div>
