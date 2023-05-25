@@ -32,10 +32,7 @@ const SearchInput = () => {
 
   return (
     <>
-      <div
-        className='flex justify-between items-center bg-white rounded-lg shadow-lg'
-        x-data="{ search: '' }"
-      >
+      <div className='flex justify-between items-center bg-white rounded-lg shadow-lg'>
         <input
           type='search'
           className='px-4 text-gray-900 focus:outline-none'
