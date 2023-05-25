@@ -1,14 +1,14 @@
-import type { NextPage, GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { useRouter } from 'next/router';
-import React, { useCallback } from 'react';
+import type { NextPage, GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next'
+import { useRouter } from 'next/router'
+import React, { useCallback } from 'react'
 
-import Card from '../../../components/organisms/Card';
-import Layout from '../../../components/templates/Layout';
+import Card from '../../../components/organisms/Card'
+import Layout from '../../../components/templates/Layout'
 
-import { BlogListResponse } from '../../../types/blog';
-import { SiteDataResponse } from '../../../types/siteData';
-import { TagListResponse } from '../../../types/tag';
-import { client } from '../../../utils/api';
+import { BlogListResponse } from '../../../types/blog'
+import { SiteDataResponse } from '../../../types/siteData'
+import { TagListResponse } from '../../../types/tag'
+import { client } from '../../../utils/api'
 
 type StaticProps = {
   siteData: SiteDataResponse;
@@ -26,25 +26,25 @@ export const getStaticPaths: GetStaticPaths = async () => {
       offset: 0,
       limit: 10,
     },
-  });
+  })
 
-  const [blogList] = await Promise.all([blogListPromise]);
+  const [blogList] = await Promise.all([blogListPromise])
 
   const paths = [...Array(Math.ceil(blogList.totalCount / blogList.limit))]
     .map((_, i) => i + 1)
-    .map((offset) => `/blogs/page/${offset}`);
+    .map((offset) => `/blogs/page/${offset}`)
 
-  return { paths, fallback: false };
-};
+  return { paths, fallback: false }
+}
 
 export const getStaticProps: GetStaticProps<StaticProps> = async ({ params }) => {
   // pagination
-  const offset = params?.offset ? Number(params?.offset) : 1;
+  const offset = params?.offset ? Number(params?.offset) : 1
 
   const query = {
     offset: Number((offset - 1) * 10),
     limit: 10,
-  };
+  }
 
   // microcms
   const siteDataPromise = client.get<SiteDataResponse>({
@@ -52,7 +52,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({ params }) =>
     queries: {
       fields: 'title',
     },
-  });
+  })
 
   const blogListPromise = client.get<BlogListResponse>({
     endpoint: 'blogs',
@@ -60,18 +60,18 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({ params }) =>
       fields: 'id,title,thumbnail,tags,createdAt',
       ...query,
     },
-  });
+  })
 
   const tagListPromise = client.get<TagListResponse>({
     endpoint: 'tags',
     queries: { fields: 'id,name' },
-  });
+  })
 
   const [siteData, blogList, tagList] = await Promise.all([
     siteDataPromise,
     blogListPromise,
     tagListPromise,
-  ]);
+  ])
 
   return {
     props: {
@@ -80,26 +80,26 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({ params }) =>
       tagList,
     },
     revalidate: 60,
-  };
-};
+  }
+}
 
 const Page: NextPage<PageProps> = (props) => {
-  const { siteData, blogList, tagList } = props;
+  const { blogList, tagList } = props
 
-  const router = useRouter();
-  const currentPage = router.query.offset ? Number(router.query.offset) : 1;
-  const totalPage = Math.ceil(blogList.totalCount / blogList.limit);
-  const startPage = currentPage == 1 ? 1 : currentPage - 1;
-  const endPage = currentPage == totalPage ? currentPage : currentPage + 1;
+  const router = useRouter()
+  const currentPage = router.query.offset ? Number(router.query.offset) : 1
+  const totalPage = Math.ceil(blogList.totalCount / blogList.limit)
+  const startPage = currentPage == 1 ? 1 : currentPage - 1
+  const endPage = currentPage == totalPage ? currentPage : currentPage + 1
   const range = (start: number, end: number) =>
-    [...Array(end - start + 1)].map((_, i) => start + i);
+    [...Array(end - start + 1)].map((_, i) => start + i)
 
   const handleChangePage = useCallback(
     (page: number) => {
-      void router.push(`/blogs/page/${page}`);
+      void router.push(`/blogs/page/${page}`)
     },
     [router],
-  );
+  )
 
   return (
     <>
@@ -179,7 +179,7 @@ const Page: NextPage<PageProps> = (props) => {
         </div>
       </Layout>
     </>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page
