@@ -6,7 +6,7 @@ import { useCallback } from 'react'
 import Card from 'components/organisms/Card'
 
 // types
-import { BlogListResponse } from '../../types/blog'
+import { BlogListResponse } from '../../../types/blog'
 
 type Props = {
   blogList: BlogListResponse
