@@ -1,7 +1,7 @@
 import type { NextPage, GetServerSideProps, InferGetServerSidePropsType } from 'next';
 
 import Card from '../../components/organisms/Card';
-import Layout from '../../components/templates/Layout';
+import Layout from '../../components/layouts/Layout';
 
 import { BlogListResponse } from '../../types/blog';
 import { TagListResponse } from '../../types/tag';

@@ -3,7 +3,7 @@ import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
 import React from 'react'
 
 // components
-import Layout from '../components/templates/Layout'
+import Layout from '../components/layouts/Layout'
 import BlogList from 'features/blogs/components/BlogList'
 
 // types

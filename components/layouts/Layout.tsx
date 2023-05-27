@@ -7,7 +7,7 @@ import { TagListResponse } from '../../types/tag';
 import Header from '../organisms/Header';
 
 import Sidebar from '../organisms/Sidebar';
-import CommonMeta from '../templates/CommonMeta';
+import CommonMeta from './CommonMeta';
 
 type Props = {
   children?: ReactNode;
