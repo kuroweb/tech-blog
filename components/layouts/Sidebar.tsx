@@ -1,16 +1,23 @@
-import Image from 'next/image';
-import { useContext } from 'react';
-import { SidebarContext } from '../../contexts/sidebarContext';
-import { TagListResponse } from '../../types/tag';
-import SearchInput from '../organisms/SearchInput';
-import TagButton from '../organisms/TagButton';
+// common
+import Image from 'next/image'
+import { useContext } from 'react'
+
+// contexts
+import { SidebarContext } from '../../contexts/sidebarContext'
+
+// components
+import SearchInput from '../organisms/SearchInput'
+import TagButton from '../organisms/TagButton'
+
+// types
+import { TagListResponse } from '../../types/tag'
 
 type Props = {
-  tagList: TagListResponse;
-};
+  tagList: TagListResponse
+}
 
 const Sidebar = ({ tagList }: Props) => {
-  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
+  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
 
   const menu = (
     <>
@@ -64,7 +71,7 @@ const Sidebar = ({ tagList }: Props) => {
         </div>
       </div>
     </>
-  );
+  )
 
   return (
     <>
@@ -121,12 +128,12 @@ const Sidebar = ({ tagList }: Props) => {
         <div
           className='w-screen h-full cursor-pointer'
           onClick={() => {
-            setSidebarOpen(false);
+            setSidebarOpen(false)
           }}
         ></div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

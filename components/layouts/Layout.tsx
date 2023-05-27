@@ -1,22 +1,26 @@
-import { ReactNode, useState } from 'react';
+// common
+import { ReactNode, useState } from 'react'
 
-import { SidebarContext } from '../../contexts/sidebarContext';
+// contexts
+import { SidebarContext } from '../../contexts/sidebarContext'
 
-import { MetaData } from '../../types/metaData';
-import { TagListResponse } from '../../types/tag';
-import Header from '../organisms/Header';
+// components
+import Sidebar from './Sidebar'
+import Header from '../organisms/Header'
+import CommonMeta from './CommonMeta'
 
-import Sidebar from '../organisms/Sidebar';
-import CommonMeta from './CommonMeta';
+// types
+import { MetaData } from '../../types/metaData'
+import { TagListResponse } from '../../types/tag'
 
 type Props = {
-  children?: ReactNode;
-  tagList: TagListResponse;
-  meta: MetaData;
-};
+  children?: ReactNode
+  tagList: TagListResponse
+  meta: MetaData
+}
 
 const Layout = ({ children, tagList, meta }: Props) => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
     <>
@@ -35,7 +39,7 @@ const Layout = ({ children, tagList, meta }: Props) => {
         </div>
       </SidebarContext.Provider>
     </>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
