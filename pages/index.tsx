@@ -4,7 +4,7 @@ import React from 'react'
 
 // components
 import Layout from '../components/templates/Layout'
-import BlogList from 'components/layouts/BlogList'
+import BlogList from 'features/blogs/BlogList'
 
 // types
 import { BlogListResponse } from '../types/blog'
