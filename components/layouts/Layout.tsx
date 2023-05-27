@@ -6,7 +6,7 @@ import { SidebarContext } from '../../contexts/sidebarContext'
 
 // components
 import Sidebar from './Sidebar'
-import Header from '../organisms/Header'
+import Header from './Header'
 import CommonMeta from './CommonMeta'
 
 // types
