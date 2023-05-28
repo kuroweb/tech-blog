@@ -1,7 +1,7 @@
 import { NextPage, GetStaticPaths, InferGetStaticPropsType, GetStaticProps } from 'next';
 
-import Card from '../../components/organisms/Card';
-import Layout from '../../components/templates/Layout';
+import Card from '../../features/blogs/components/BlogCard';
+import Layout from '../../components/layouts/Layout';
 
 import { BlogListResponse } from '../../types/blog';
 import { TagResponse, TagListResponse } from '../../types/tag';

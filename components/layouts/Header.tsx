@@ -1,10 +1,13 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import { useContext } from 'react';
-import { SidebarContext } from '../../contexts/sidebarContext';
+// common
+import Image from 'next/image'
+import Link from 'next/link'
+import { useContext } from 'react'
+
+// contexts
+import { SidebarContext } from '../../contexts/sidebarContext'
 
 const Header = () => {
-  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
+  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
 
   return (
     <>
@@ -14,15 +17,15 @@ const Header = () => {
           <div className='flex justify-between items-center -mb-px h-16'>
             {/* Header: Left side */}
             <div className='flex'>
-              <Link href={'/'} passHref>
-                <a>
+              <Link href={'/'}>
+                {
                   <Image
                     src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/4957ee684a0e466b93f0caae6610cfc8/header-logo-v4.png?auto=format,compress'
                     width={170}
                     height={28}
                     alt='My avatar'
                   />
-                </a>
+                }
               </Link>
             </div>
             {/* Header: Right side */}
@@ -49,7 +52,7 @@ const Header = () => {
         </div>
       </header>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

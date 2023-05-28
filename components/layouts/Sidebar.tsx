@@ -1,26 +1,93 @@
-import Image from 'next/image';
-import { useContext } from 'react';
-import { SidebarContext } from '../../contexts/sidebarContext';
-import { TagListResponse } from '../../types/tag';
-import SearchInput from '../organisms/SearchInput';
-import TagButton from '../organisms/TagButton';
+// common
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { useCallback, useContext, useState } from 'react'
+
+// contexts
+import { SidebarContext } from '../../contexts/sidebarContext'
+
+// types
+import { TagListResponse } from '../../types/tag'
 
 type Props = {
-  tagList: TagListResponse;
-};
+  tagList: TagListResponse
+}
 
 const Sidebar = ({ tagList }: Props) => {
-  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext);
+  const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
+  const [search, setSearch] = useState('')
+  const router = useRouter()
+
+  const handleChangeKeyword = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { value } = e.currentTarget
+      setSearch(value)
+    },
+    [setSearch],
+  )
+
+  const handleClickSearchButton = useCallback(() => {
+    void router.push(`/blogs/search?keyword=${search}`)
+    setSidebarOpen(false)
+  }, [router, search, setSidebarOpen])
+
+  const handleKeyDownSearch = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      if (e.key === 'Enter') {
+        void router.push(`/blogs/search?keyword=${search}`)
+        setSidebarOpen(false)
+      }
+    },
+    [router, search, setSidebarOpen],
+  )
 
   const menu = (
     <>
       <div className='pb-4'>
-        <SearchInput />
+        <div className='flex justify-between items-center bg-white rounded-lg shadow-lg'>
+          <input
+            type='search'
+            className='px-4 text-gray-900 focus:outline-none'
+            placeholder='search'
+            onChange={handleChangeKeyword}
+            onKeyDown={handleKeyDownSearch}
+          />
+
+          <button
+            type='submit'
+            className='flex justify-center items-center w-12 h-12 text-gray-100 bg-gray-600 hover:bg-gray-400 rounded-lg shadow-lg'
+            onClick={handleClickSearchButton}
+          >
+            <svg
+              className='w-5 h-5'
+              stroke='white'
+              fill='none'
+              viewBox='0 0 24 24'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                strokeLinecap='round'
+                strokeLinejoin='round'
+                strokeWidth='2'
+                d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+              ></path>
+            </svg>
+          </button>
+        </div>
       </div>
       <div className='p-4 bg-white rounded-lg shadow-lg'>
         <p className='pb-2 font-bold'>Tags</p>
         {tagList.contents.map((tag) => (
-          <TagButton tag={tag} key={tag.id} />
+          <button
+            key={tag.id}
+            className='py-0.5 px-2 mr-1 mb-1 text-xs text-blue-700 hover:text-white bg-transparent hover:bg-blue-500 rounded-xl border border-blue-500 hover:border-transparent'
+            onClick={() => setSidebarOpen(false)}
+          >
+            <Link href={'/tags/' + tag.id}>
+              {tag.name}
+            </Link>
+          </button>
         ))}
       </div>
       <div className='pt-4'>
@@ -64,7 +131,7 @@ const Sidebar = ({ tagList }: Props) => {
         </div>
       </div>
     </>
-  );
+  )
 
   return (
     <>
@@ -121,12 +188,12 @@ const Sidebar = ({ tagList }: Props) => {
         <div
           className='w-screen h-full cursor-pointer'
           onClick={() => {
-            setSidebarOpen(false);
+            setSidebarOpen(false)
           }}
         ></div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

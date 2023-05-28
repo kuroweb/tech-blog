@@ -16,7 +16,7 @@ import {
   HatenaIcon,
 } from 'react-share';
 
-import Layout from '../../components/templates/Layout';
+import Layout from '../../components/layouts/Layout';
 
 import { BlogResponse } from '../../types/blog';
 import { TagListResponse } from '../../types/tag';
