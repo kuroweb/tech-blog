@@ -1,19 +1,22 @@
-import moment from 'moment';
-import Image from 'next/image';
-import Link from 'next/link';
-import { BlogResponse } from '../../../types/blog';
+// common
+import Image from 'next/image'
+import Link from 'next/link'
 
-import TagButton from '../../../components/organisms/TagButton';
+// package
+import moment from 'moment'
+
+// types
+import { BlogResponse } from '../../../types/blog'
 
 type blogProps = {
-  blog: BlogResponse;
-};
+  blog: BlogResponse
+}
 
-const Card = ({ blog }: blogProps) => {
+const BlogCard = ({ blog }: blogProps) => {
   const format = (str: string) => {
-    const day = moment(str);
-    return day.format('YYYY-MM-DD');
-  };
+    const day = moment(str)
+    return day.format('YYYY-MM-DD')
+  }
 
   return (
     <>
@@ -67,14 +70,21 @@ const Card = ({ blog }: blogProps) => {
             </div>
             <div className='flex flex-wrap mt-2'>
               {blog.tags.map((tag) => (
-                <TagButton tag={tag} key={tag.id} />
+                <button
+                  key={tag.id}
+                  className='py-0.5 px-2 mr-1 mb-1 text-xs text-blue-700 hover:text-white bg-transparent hover:bg-blue-500 rounded-xl border border-blue-500 hover:border-transparent'
+                >
+                  <Link passHref href={'/tags/' + tag.id}>
+                    {tag.name}
+                  </Link>
+                </button>
               ))}
             </div>
           </div>
         </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Card;
+export default BlogCard
