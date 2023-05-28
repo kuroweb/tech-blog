@@ -1,6 +1,6 @@
 import { NextPage, GetStaticPaths, InferGetStaticPropsType, GetStaticProps } from 'next';
 
-import Card from '../../components/organisms/Card';
+import Card from '../../features/blogs/components/BlogCard';
 import Layout from '../../components/layouts/Layout';
 
 import { BlogListResponse } from '../../types/blog';

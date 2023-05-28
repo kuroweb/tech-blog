@@ -3,7 +3,7 @@ import router from 'next/router'
 import { useCallback } from 'react'
 
 // components
-import Card from 'components/organisms/Card'
+import Card from 'features/blogs/components/BlogCard'
 
 // types
 import { BlogListResponse } from '../../../types/blog'

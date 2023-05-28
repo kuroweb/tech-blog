@@ -1,9 +1,9 @@
 import moment from 'moment';
 import Image from 'next/image';
 import Link from 'next/link';
-import { BlogResponse } from '../../types/blog';
+import { BlogResponse } from '../../../types/blog';
 
-import TagButton from '../organisms/TagButton';
+import TagButton from '../../../components/organisms/TagButton';
 
 type blogProps = {
   blog: BlogResponse;

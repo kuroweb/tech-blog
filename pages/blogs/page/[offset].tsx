@@ -2,7 +2,7 @@ import type { NextPage, GetStaticPaths, GetStaticProps, InferGetStaticPropsType 
 import { useRouter } from 'next/router'
 import React, { useCallback } from 'react'
 
-import Card from '../../../components/organisms/Card'
+import Card from '../../../features/blogs/components/BlogCard'
 import Layout from '../../../components/layouts/Layout'
 
 import { BlogListResponse } from '../../../types/blog'
