@@ -1,13 +1,11 @@
 // common
 import Image from 'next/image'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useCallback, useContext, useState } from 'react'
 
 // contexts
 import { SidebarContext } from '../../contexts/sidebarContext'
-
-// components
-import TagButton from '../organisms/TagButton'
 
 // types
 import { TagListResponse } from '../../types/tag'
@@ -18,7 +16,6 @@ type Props = {
 
 const Sidebar = ({ tagList }: Props) => {
   const { sidebarOpen, setSidebarOpen } = useContext(SidebarContext)
-
   const [search, setSearch] = useState('')
   const router = useRouter()
 
@@ -82,7 +79,15 @@ const Sidebar = ({ tagList }: Props) => {
       <div className='p-4 bg-white rounded-lg shadow-lg'>
         <p className='pb-2 font-bold'>Tags</p>
         {tagList.contents.map((tag) => (
-          <TagButton tag={tag} key={tag.id} />
+          <button
+            key={tag.id}
+            className='py-0.5 px-2 mr-1 mb-1 text-xs text-blue-700 hover:text-white bg-transparent hover:bg-blue-500 rounded-xl border border-blue-500 hover:border-transparent'
+            onClick={() => setSidebarOpen(false)}
+          >
+            <Link passHref href={'/tags/' + tag.id}>
+              {tag.name}
+            </Link>
+          </button>
         ))}
       </div>
       <div className='pt-4'>
