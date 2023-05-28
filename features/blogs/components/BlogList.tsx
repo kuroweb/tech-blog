@@ -25,11 +25,13 @@ const BlogList = (props: Props) => {
 
   return (
     <>
-      <div className='py-8 px-4 sm:px-6 lg:px-8 w-full'>
-        <p className='p-2 text-2xl font-bold'>Posts</p>
-        <div className='flex flex-wrap'>
+      <div className='container mx-auto'>
+        <p className='text-2xl font-bold'>Posts</p>
+        <div className='grid grid-cols-2 gap-4'>
           {props.blogList.contents.map((blog) => (
-            <Card blog={blog} key={blog.id} />
+            <div className='col-span-1' key={blog.id}>
+              <Card blog={blog} />
+            </div>
           ))}
         </div>
         <div className='p-8'>
@@ -39,7 +41,7 @@ const BlogList = (props: Props) => {
             ) : (
               <a
                 onClick={() => handleChangePage(currentPage - 1)}
-                className='flex items-center py-2 px-2 text-gray-600 hover:text-white bg-white hover:bg-gray-600 rounded-md shadow-md'
+                className='flex items-center p-2 text-gray-600 hover:text-white bg-white hover:bg-gray-600 rounded-md shadow-md'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -77,7 +79,7 @@ const BlogList = (props: Props) => {
             ) : (
               <a
                 onClick={() => handleChangePage(currentPage + 1)}
-                className='flex items-center py-2 px-2 text-gray-600 hover:text-white bg-white hover:bg-gray-600 rounded-md shadow-md'
+                className='flex items-center p-2 text-gray-600 hover:text-white bg-white hover:bg-gray-600 rounded-md shadow-md'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'

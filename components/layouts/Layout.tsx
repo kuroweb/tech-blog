@@ -25,17 +25,17 @@ const Layout = ({ children, tagList, meta }: Props) => {
   return (
     <>
       <SidebarContext.Provider value={{ sidebarOpen, setSidebarOpen }}>
-        <div className='flex overflow-hidden h-screen bg-gray-200'>
-          <div className='flex overflow-x-hidden overflow-y-auto relative flex-col flex-1'>
-            <CommonMeta meta={meta} />
-            <Header />
-            <main className='container mx-auto max-w-6xl'>
-              <div className='flex justify-center'>
-                <div className='flex-auto'>{children}</div>
+        <div className='bg-gray-200'>
+          <CommonMeta meta={meta} />
+          <Header />
+          <main className='container p-4 mx-auto max-w-6xl'>
+            <div className='grid grid-cols-12 gap-4'>
+              <div className='col-span-12 md:col-span-8 lg:col-span-9'>{children}</div>
+              <div className='col-span-12 md:col-span-4 lg:col-span-3'>
                 <Sidebar tagList={tagList} />
               </div>
-            </main>
-          </div>
+            </div>
+          </main>
         </div>
       </SidebarContext.Provider>
     </>
