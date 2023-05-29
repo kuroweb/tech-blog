@@ -3,7 +3,7 @@ import router from 'next/router'
 import { useCallback } from 'react'
 
 // components
-import Card from 'features/blogs/components/BlogCard'
+import Card from '../../../features/blogs/components/BlogCard'
 
 // types
 import { BlogListResponse } from '../../../types/blog'
@@ -35,17 +35,17 @@ const BlogList = (props: Props) => {
           ))}
         </div>
         <div className='p-8'>
-          <div className='flex justify-center items-center space-x-2'>
+          <div className='flex items-center justify-center space-x-2'>
             {currentPage == 1 ? (
               ''
             ) : (
               <a
                 onClick={() => handleChangePage(currentPage - 1)}
-                className='flex items-center p-2 text-gray-600 hover:text-white bg-white hover:bg-gray-600 rounded-md shadow-md'
+                className='flex items-center rounded-md bg-white p-2 text-gray-600 shadow-md hover:bg-gray-600 hover:text-white'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  className='w-6 h-6 cursor-pointer'
+                  className='h-6 w-6 cursor-pointer'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
@@ -61,13 +61,13 @@ const BlogList = (props: Props) => {
             )}
             {range(startPage, endPage).map((page: number) =>
               currentPage === page ? (
-                <a className='py-2 px-4 text-white bg-gray-600 rounded-md shadow-md' key={page}>
+                <a className='rounded-md bg-gray-600 px-4 py-2 text-white shadow-md' key={page}>
                   {page}
                 </a>
               ) : (
                 <a
                   onClick={() => handleChangePage(page)}
-                  className='py-2 px-4 text-gray-600 hover:text-white bg-white hover:bg-gray-600 rounded-md shadow-md cursor-pointer'
+                  className='cursor-pointer rounded-md bg-white px-4 py-2 text-gray-600 shadow-md hover:bg-gray-600 hover:text-white'
                   key={page}
                 >
                   {page}
@@ -79,11 +79,11 @@ const BlogList = (props: Props) => {
             ) : (
               <a
                 onClick={() => handleChangePage(currentPage + 1)}
-                className='flex items-center p-2 text-gray-600 hover:text-white bg-white hover:bg-gray-600 rounded-md shadow-md'
+                className='flex items-center rounded-md bg-white p-2 text-gray-600 shadow-md hover:bg-gray-600 hover:text-white'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
-                  className='w-6 h-6 cursor-pointer'
+                  className='h-6 w-6 cursor-pointer'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
