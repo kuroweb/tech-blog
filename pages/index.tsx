@@ -61,7 +61,7 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       <Layout tagList={props.tagList} meta={{}}>
-        <BlogList blogList={props.blogList} />
+        <BlogList offset={1} blogList={props.blogList} />
       </Layout>
     </>
   )

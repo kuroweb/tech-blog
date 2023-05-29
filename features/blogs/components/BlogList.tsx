@@ -9,11 +9,12 @@ import Card from '../../../features/blogs/components/BlogCard'
 import { BlogListResponse } from '../../../types/blog'
 
 type Props = {
+  offset: number
   blogList: BlogListResponse
 }
 
 const BlogList = (props: Props) => {
-  const currentPage = 1
+  const currentPage = props.offset
   const totalPage = Math.ceil(props.blogList.totalCount / props.blogList.limit)
   const startPage = currentPage == 1 ? 1 : currentPage - 1
   const endPage = currentPage == totalPage ? currentPage : currentPage + 1
