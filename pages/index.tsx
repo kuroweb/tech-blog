@@ -4,7 +4,7 @@ import React from 'react'
 
 // components
 import Layout from '../components/layouts/Layout'
-import BlogList from 'features/blogs/components/BlogList'
+import BlogList from '../features/blogs/components/BlogList'
 
 // types
 import { BlogListResponse } from '../types/blog'
@@ -61,7 +61,7 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       <Layout tagList={props.tagList} meta={{}}>
-        <BlogList blogList={props.blogList} />
+        <BlogList offset={1} blogList={props.blogList} />
       </Layout>
     </>
   )

@@ -4,7 +4,7 @@ import React from 'react'
 
 // components
 import Layout from '../../../components/layouts/Layout'
-import BlogList from 'features/blogs/components/BlogList'
+import BlogList from '../../../features/blogs/components/BlogList'
 
 // types
 import { BlogListResponse } from '../../../types/blog'
@@ -15,6 +15,7 @@ import { TagListResponse } from '../../../types/tag'
 import { client } from '../../../utils/api'
 
 type StaticProps = {
+  offset: number
   siteData: SiteDataResponse
   blogList: BlogListResponse
   tagList: TagListResponse
@@ -79,6 +80,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async ({ params }) =>
 
   return {
     props: {
+      offset,
       siteData,
       blogList,
       tagList,
@@ -91,7 +93,7 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       <Layout tagList={props.tagList} meta={{}}>
-        <BlogList blogList={props.blogList} />
+        <BlogList offset={props.offset} blogList={props.blogList} />
       </Layout>
     </>
   )
