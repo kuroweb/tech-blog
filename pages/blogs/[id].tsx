@@ -1,9 +1,10 @@
-import moment from 'moment';
+import moment from 'moment'
+import ReactMarkdown from 'react-markdown'
 
-import { NextPage, GetStaticPaths, InferGetStaticPropsType, GetStaticProps } from 'next';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { NextPage, GetStaticPaths, InferGetStaticPropsType, GetStaticProps } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import {
   TwitterShareButton,
@@ -14,42 +15,42 @@ import {
   FacebookIcon,
   LineIcon,
   HatenaIcon,
-} from 'react-share';
+} from 'react-share'
 
-import Layout from '../../components/layouts/Layout';
+import Layout from '../../components/layouts/Layout'
 
-import { BlogResponse } from '../../types/blog';
-import { TagListResponse } from '../../types/tag';
+import { BlogResponse } from '../../types/blog'
+import { TagListResponse } from '../../types/tag'
 
-import { client } from '../../utils/api';
-import { isDraft } from '../../utils/isDraft';
-import { toStringId } from '../../utils/toStringId';
+import { client } from '../../utils/api'
+import { isDraft } from '../../utils/isDraft'
+import { toStringId } from '../../utils/toStringId'
 
 // SSG
 type StaticProps = {
-  blog: BlogResponse;
-  tagList: TagListResponse;
-  draftKey?: string;
-  domain?: string;
-};
+  blog: BlogResponse
+  tagList: TagListResponse
+  draftKey?: string
+  domain?: string
+}
 
-type PageProps = InferGetStaticPropsType<typeof getStaticProps>;
+type PageProps = InferGetStaticPropsType<typeof getStaticProps>
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     fallback: 'blocking',
     paths: [],
-  };
-};
+  }
+}
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
-  const { params, previewData } = context;
+  const { params, previewData } = context
   if (!params?.id) {
-    throw new Error('Error: ID not found');
+    throw new Error('Error: ID not found')
   }
 
-  const id = toStringId(params.id);
-  const draftKey = isDraft(previewData) ? { draftKey: previewData.draftKey } : {};
+  const id = toStringId(params.id)
+  const draftKey = isDraft(previewData) ? { draftKey: previewData.draftKey } : {}
 
   try {
     const blogContentPromise = client.get<BlogResponse>({
@@ -59,14 +60,14 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
         fields: 'id,title,body,updatedAt,tags,thumbnail',
         ...draftKey,
       },
-    });
+    })
 
     const tagListPromise = client.get<TagListResponse>({
       endpoint: 'tags',
       queries: { fields: 'id,name' },
-    });
+    })
 
-    const [blog, tagList] = await Promise.all([blogContentPromise, tagListPromise]);
+    const [blog, tagList] = await Promise.all([blogContentPromise, tagListPromise])
 
     return {
       props: {
@@ -76,28 +77,30 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
         domain: process.env.DOMAIN_NAME,
       },
       revalidate: 60,
-    };
+    }
   } catch (e) {
-    return { notFound: true };
+    return { notFound: true }
   }
-};
+}
 
 const Page: NextPage<PageProps> = (props) => {
-  const { blog, tagList, draftKey, domain } = props;
-  const router = useRouter();
-  const fullPath = `${domain}${router.asPath}`;
-  const body = blog.body.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '');
-  const description = body.substr(0, 120);
+  const { blog, tagList, draftKey, domain } = props
+  const router = useRouter()
+  const fullPath = `${domain}${router.asPath}`
+  const body = blog.body.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
+  const description = body.substr(0, 120)
+
+  console.log(blog.body)
 
   const meta = {
     pageTitle: blog.title,
     pageDescription: description,
     pagePath: fullPath,
     pageImg: blog.thumbnail ? blog.thumbnail.url : '',
-  };
+  }
 
   if (router.isFallback) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>
   }
 
   return (
@@ -152,12 +155,7 @@ const Page: NextPage<PageProps> = (props) => {
               )}
             </div>
             <div className='p-4 md:p-8'>
-              <div
-                className='pt-7 max-w-full prose'
-                dangerouslySetInnerHTML={{
-                  __html: `${blog.body}`,
-                }}
-              />
+              <ReactMarkdown className='max-w-full prose'>{blog.body}</ReactMarkdown>
             </div>
             <div className='flex justify-center'>
               <div className='p-2'>
@@ -185,7 +183,7 @@ const Page: NextPage<PageProps> = (props) => {
         </div>
       </Layout>
     </>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

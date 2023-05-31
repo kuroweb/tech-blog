@@ -64,7 +64,7 @@ const BlogCard = ({ blog }: blogProps) => {
               >
                 <path d='M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' />
               </svg>
-              <p className='pl-1 text-xs text-gray-500'>{blog.updatedAt}</p>
+              <p className='pl-1 text-xs text-gray-500'>{moment(blog.updatedAt).format('YYYY-MM-DD')}</p>
             </div>
             <div className='flex flex-wrap mt-2'>
               {blog.tags.map((tag) => (
