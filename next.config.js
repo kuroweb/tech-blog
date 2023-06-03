@@ -5,6 +5,10 @@ const config = {
   images: {
     domains: ['images.microcms-assets.io', 'flowbite.com'],
   },
-};
+}
 
-module.exports = config;
+const removeImports = require('next-remove-imports')()
+
+module.exports = removeImports({
+  ...config,
+})
