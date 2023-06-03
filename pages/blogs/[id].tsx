@@ -90,8 +90,6 @@ const Page: NextPage<PageProps> = (props) => {
   const body = blog.body.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
   const description = body.substr(0, 120)
 
-  console.log(blog.body)
-
   const meta = {
     pageTitle: blog.title,
     pageDescription: description,
@@ -118,11 +116,11 @@ const Page: NextPage<PageProps> = (props) => {
         <div className='py-8 md:px-8'>
           <div className='bg-white md:rounded-lg'>
             <div className='relative'>
-              <p className='absolute top-1/2 left-1/2 z-10 text-3xl font-bold text-white transform -translate-x-1/2 -translate-y-1/2'>
+              <p className='absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-white'>
                 {blog.title}
               </p>
               <svg
-                className='absolute right-32 md:right-36 bottom-6 z-10 w-5 h-5'
+                className='absolute bottom-6 right-32 z-10 h-5 w-5 md:right-36'
                 stroke='cyan'
                 strokeWidth='3'
                 fill='none'
@@ -131,12 +129,12 @@ const Page: NextPage<PageProps> = (props) => {
               >
                 <path d='M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' />
               </svg>
-              <p className='absolute right-5 bottom-5 z-10 text-lg md:text-xl font-bold text-white'>
+              <p className='absolute bottom-5 right-5 z-10 text-lg font-bold text-white md:text-xl'>
                 {moment(blog.updatedAt).format('YYYY-MM-DD')}
               </p>
               {blog.thumbnail ? (
                 <Image
-                  className='object-cover md:rounded-t-lg brightness-[30%]'
+                  className='object-cover brightness-[30%] md:rounded-t-lg'
                   src={blog.thumbnail.url}
                   width={800}
                   height={450}
@@ -145,7 +143,7 @@ const Page: NextPage<PageProps> = (props) => {
                 />
               ) : (
                 <Image
-                  className='object-cover md:rounded-t-lg brightness-[30%]'
+                  className='object-cover brightness-[30%] md:rounded-t-lg'
                   src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/c31c6dc3379f4c0f963a30ec5cebf2d9/icon_default_image.svg'
                   width={800}
                   height={450}
@@ -155,7 +153,7 @@ const Page: NextPage<PageProps> = (props) => {
               )}
             </div>
             <div className='p-4 md:p-8'>
-              <ReactMarkdown className='max-w-full prose'>{blog.body}</ReactMarkdown>
+              <ReactMarkdown className='prose max-w-full'>{blog.body}</ReactMarkdown>
             </div>
             <div className='flex justify-center'>
               <div className='p-2'>
