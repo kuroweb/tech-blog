@@ -13,20 +13,15 @@ type blogProps = {
 }
 
 const BlogCard = ({ blog }: blogProps) => {
-  const format = (str: string) => {
-    const day = moment(str)
-    return day.format('YYYY-MM-DD')
-  }
-
   return (
     <>
       <div className='flex h-full'>
-        <div className='bg-white rounded-lg border border-gray-200 shadow-md'>
+        <div className='rounded-lg border border-gray-200 bg-white shadow-md'>
           {blog.thumbnail ? (
             <Link href={`/blogs/${blog.id}`}>
               {
                 <Image
-                  className='object-cover rounded-t-lg'
+                  className='rounded-t-lg object-cover'
                   src={blog.thumbnail.url}
                   alt='thumbnail'
                   width={500}
@@ -39,7 +34,7 @@ const BlogCard = ({ blog }: blogProps) => {
             <Link href={`/blogs/${blog.id}`}>
               {
                 <Image
-                  className='object-cover rounded-t-lg'
+                  className='rounded-t-lg object-cover'
                   src='https://images.microcms-assets.io/assets/905a207a61104dbda1ff337051103d38/c31c6dc3379f4c0f963a30ec5cebf2d9/icon_default_image.svg'
                   alt='thumbnail'
                   width={500}
@@ -55,7 +50,7 @@ const BlogCard = ({ blog }: blogProps) => {
             </h1>
             <div className='flex'>
               <svg
-                className='w-4 h-4'
+                className='h-4 w-4'
                 stroke='gray'
                 strokeWidth='3'
                 fill='none'
@@ -66,11 +61,11 @@ const BlogCard = ({ blog }: blogProps) => {
               </svg>
               <p className='pl-1 text-xs text-gray-500'>{moment(blog.updatedAt).format('YYYY-MM-DD')}</p>
             </div>
-            <div className='flex flex-wrap mt-2'>
+            <div className='mt-2 flex flex-wrap'>
               {blog.tags.map((tag) => (
                 <button
                   key={tag.id}
-                  className='py-0.5 px-2 mr-1 mb-1 text-xs text-blue-700 hover:text-white bg-transparent hover:bg-blue-500 rounded-xl border border-blue-500 hover:border-transparent'
+                  className='mb-1 mr-1 rounded-xl border border-blue-500 bg-transparent px-2 py-0.5 text-xs text-blue-700 hover:border-transparent hover:bg-blue-500 hover:text-white'
                 >
                   <Link passHref href={'/tags/' + tag.id}>
                     {tag.name}
