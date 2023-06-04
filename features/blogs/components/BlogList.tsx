@@ -3,7 +3,7 @@ import router from 'next/router'
 import { useCallback } from 'react'
 
 // components
-import Card from '../../../features/blogs/components/BlogCard'
+import BlogCard from '../../../features/blogs/components/BlogCard'
 
 // types
 import { BlogListResponse } from '../../../types/blog'
@@ -31,7 +31,7 @@ const BlogList = (props: Props) => {
         <div className='grid grid-cols-2 gap-4'>
           {props.blogList.contents.map((blog) => (
             <div className='col-span-1' key={blog.id}>
-              <Card blog={blog} />
+              <BlogCard blog={blog} />
             </div>
           ))}
         </div>
