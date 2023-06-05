@@ -11,8 +11,8 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./:/home/node/app
-      - node-modules:/home/node/app/node_modules
+      - ./:/app
+      - node-modules:/app/node_modules
     command:
       npm run dev
 
