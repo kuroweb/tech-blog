@@ -7,8 +7,4 @@ const config = {
   },
 }
 
-const removeImports = require('next-remove-imports')()
-
-module.exports = removeImports({
-  ...config,
-})
+module.exports = config
