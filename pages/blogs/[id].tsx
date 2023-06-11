@@ -115,7 +115,7 @@ const Page: NextPage<PageProps> = (props) => {
         <div className='py-8 md:px-8'>
           <div className='bg-white md:rounded-lg'>
             <div className='relative'>
-              <p className='absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 text-3xl font-bold text-white'>
+              <p className='xs:text-base absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2 font-bold text-white md:text-3xl'>
                 {blog.title}
               </p>
               <svg
@@ -128,7 +128,7 @@ const Page: NextPage<PageProps> = (props) => {
               >
                 <path d='M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15' />
               </svg>
-              <p className='absolute bottom-5 right-5 z-10 text-lg font-bold text-white md:text-xl'>
+              <p className='xs:text-base absolute bottom-5 right-5 z-10 text-lg font-bold text-white md:text-xl'>
                 {moment(blog.updatedAt).format('YYYY-MM-DD')}
               </p>
               {blog.thumbnail ? (
