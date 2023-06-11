@@ -112,7 +112,6 @@ const Page: NextPage<PageProps> = (props) => {
             </Link>
           </div>
         )}
-
         <div className='py-8 md:px-8'>
           <div className='bg-white md:rounded-lg'>
             <div className='relative'>
@@ -153,7 +152,7 @@ const Page: NextPage<PageProps> = (props) => {
               )}
             </div>
             <div className='p-4 md:p-8'>
-              <ReactMarkdown className='prose max-w-full'>{blog.body}</ReactMarkdown>
+              <ReactMarkdown className='prose overflow-hidden'>{blog.body}</ReactMarkdown>
             </div>
             <div className='flex justify-center'>
               <div className='p-2'>
