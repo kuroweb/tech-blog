@@ -1,11 +1,16 @@
-import moment from 'moment'
-import ReactMarkdown from 'react-markdown'
-
+// common
 import { NextPage, GetStaticPaths, InferGetStaticPropsType, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+// package
+import { remark } from 'remark'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
+import rehypeMermaid from 'rehype-mermaidjs'
+import moment from 'moment'
 import {
   TwitterShareButton,
   FacebookShareButton,
@@ -17,11 +22,14 @@ import {
   HatenaIcon,
 } from 'react-share'
 
+// components
 import Layout from '../../components/layouts/Layout'
 
+// types
 import { BlogResponse } from '../../types/blog'
 import { TagListResponse } from '../../types/tag'
 
+// utils
 import { client } from '../../utils/api'
 import { isDraft } from '../../utils/isDraft'
 import { toStringId } from '../../utils/toStringId'
@@ -29,12 +37,30 @@ import { toStringId } from '../../utils/toStringId'
 // SSG
 type StaticProps = {
   blog: BlogResponse
+  blogHtml: string
   tagList: TagListResponse
   draftKey?: string
   domain?: string
 }
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>
+
+const markdownToHtml = async (markdown: string) => {
+  const result = await remark()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeStringify)
+    .use(rehypeMermaid, {
+      mermaidConfig: {
+        theme: 'default',
+        themeCSS: '.node.default { font-size: 0.85em; }  .edgeLabels { font-size: 0.85rem; }',
+        flowchart: { htmlLabels: false },
+        class: { htmlLabels: false },
+      },
+    })
+    .process(markdown)
+  return result.toString()
+}
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -68,10 +94,12 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
     })
 
     const [blog, tagList] = await Promise.all([blogContentPromise, tagListPromise])
+    const blogHtml = await markdownToHtml(blog.body)
 
     return {
       props: {
         blog,
+        blogHtml,
         tagList,
         ...draftKey,
         domain: process.env.DOMAIN_NAME,
@@ -84,7 +112,8 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
 }
 
 const Page: NextPage<PageProps> = (props) => {
-  const { blog, tagList, draftKey, domain } = props
+  const { blog, blogHtml, tagList, draftKey, domain } = props
+
   const router = useRouter()
   const fullPath = `${domain}${router.asPath}`
   const body = blog.body.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
@@ -152,7 +181,10 @@ const Page: NextPage<PageProps> = (props) => {
               )}
             </div>
             <div className='p-4 md:p-8'>
-              <ReactMarkdown className='prose overflow-hidden'>{blog.body}</ReactMarkdown>
+              <div
+                className='prose overflow-hidden'
+                dangerouslySetInnerHTML={{ __html: blogHtml }}
+              ></div>
             </div>
             <div className='flex justify-center'>
               <div className='p-2'>
