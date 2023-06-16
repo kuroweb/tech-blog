@@ -31,7 +31,6 @@ import { TagListResponse } from '../../types/tag'
 
 // utils
 import { client } from '../../utils/api'
-import { isDraft } from '../../utils/isDraft'
 import { toStringId } from '../../utils/toStringId'
 
 // SSG
@@ -39,7 +38,6 @@ type StaticProps = {
   blog: BlogResponse
   blogHtml: string
   tagList: TagListResponse
-  draftKey?: string
   domain?: string
 }
 
@@ -70,13 +68,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
-  const { params, previewData } = context
+  const { params } = context
   if (!params?.id) {
     throw new Error('Error: ID not found')
   }
 
   const id = toStringId(params.id)
-  const draftKey = isDraft(previewData) ? { draftKey: previewData.draftKey } : {}
 
   try {
     const blogContentPromise = client.get<BlogResponse>({
@@ -84,7 +81,6 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
       contentId: id,
       queries: {
         fields: 'id,title,body,updatedAt,tags,thumbnail',
-        ...draftKey,
       },
     })
 
@@ -101,7 +97,6 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
         blog,
         blogHtml,
         tagList,
-        ...draftKey,
         domain: process.env.DOMAIN_NAME,
       },
       revalidate: 60,
@@ -113,7 +108,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
 }
 
 const Page: NextPage<PageProps> = (props) => {
-  const { blog, blogHtml, tagList, draftKey, domain } = props
+  const { blog, blogHtml, tagList, domain } = props
 
   const router = useRouter()
   const fullPath = `${domain}${router.asPath}`
@@ -134,14 +129,6 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       <Layout tagList={tagList} meta={meta}>
-        {draftKey && (
-          <div>
-            現在プレビューモードで閲覧中です。
-            <Link href={`/api/exit-preview?id=${blog.id}`}>
-              <a>プレビューを解除</a>
-            </Link>
-          </div>
-        )}
         <div className='py-8 md:px-8'>
           <div className='bg-white md:rounded-lg'>
             <div className='relative'>
