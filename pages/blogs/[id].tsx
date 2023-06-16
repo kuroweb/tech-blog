@@ -51,7 +51,6 @@ const markdownToHtml = async (markdown: string) => {
     .use(rehypeMermaid, {
       mermaidConfig: {
         theme: 'default',
-        themeCSS: '.node.default { font-size: 0.85em; } .edgeLabels { font-size: 0.85rem; }',
         flowchart: { htmlLabels: false },
         class: { htmlLabels: false },
       },
