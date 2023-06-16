@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
 
   const id = toStringId(params.id)
 
-  try {
+  // try {
     const blogContentPromise = client.get<BlogResponse>({
       endpoint: 'blogs',
       contentId: id,
@@ -101,10 +101,10 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
       },
       revalidate: 60,
     }
-  } catch (e) {
-    console.log(e)
-    return { notFound: true }
-  }
+  // } catch (e) {
+  //   console.log(e)
+  //   return { notFound: true }
+  // }
 }
 
 const Page: NextPage<PageProps> = (props) => {
