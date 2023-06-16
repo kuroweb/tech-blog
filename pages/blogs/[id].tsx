@@ -51,7 +51,7 @@ const markdownToHtml = async (markdown: string) => {
     .use(rehypeMermaid, {
       mermaidConfig: {
         theme: 'default',
-        themeCSS: '.node.default { font-size: 0.85em; }  .edgeLabels { font-size: 0.85rem; }',
+        themeCSS: '.node.default { font-size: 0.85em; } .edgeLabels { font-size: 0.85rem; }',
         flowchart: { htmlLabels: false },
         class: { htmlLabels: false },
       },
@@ -102,7 +102,6 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
       revalidate: 60,
     }
   // } catch (e) {
-  //   console.log(e)
   //   return { notFound: true }
   // }
 }
