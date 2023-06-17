@@ -13,6 +13,7 @@
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/typography": "^0.5.9",
     "d": "^1.0.1",
+    "mermaid": "^10.2.3",
     "microcms-js-sdk": "^2.4.0",
     "moment": "^2.29.4",
     "next": "^13.4.4",

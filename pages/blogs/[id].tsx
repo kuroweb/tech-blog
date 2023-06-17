@@ -1,11 +1,11 @@
-import moment from 'moment'
-import ReactMarkdown from 'react-markdown'
-
+// common
 import { NextPage, GetStaticPaths, InferGetStaticPropsType, GetStaticProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+// package
+import moment from 'moment'
 import {
   TwitterShareButton,
   FacebookShareButton,
@@ -17,22 +17,27 @@ import {
   HatenaIcon,
 } from 'react-share'
 
+// components
 import Layout from '../../components/layouts/Layout'
 
+// types
 import { BlogResponse } from '../../types/blog'
 import { TagListResponse } from '../../types/tag'
 
+// utils
 import { client } from '../../utils/api'
-import { isDraft } from '../../utils/isDraft'
 import { toStringId } from '../../utils/toStringId'
 
 // SSG
 type StaticProps = {
   blog: BlogResponse
   tagList: TagListResponse
-  draftKey?: string
   domain?: string
 }
+
+import mermaid from 'mermaid'
+import { useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -44,13 +49,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
-  const { params, previewData } = context
+  const { params } = context
   if (!params?.id) {
     throw new Error('Error: ID not found')
   }
 
   const id = toStringId(params.id)
-  const draftKey = isDraft(previewData) ? { draftKey: previewData.draftKey } : {}
 
   try {
     const blogContentPromise = client.get<BlogResponse>({
@@ -58,7 +62,6 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
       contentId: id,
       queries: {
         fields: 'id,title,body,updatedAt,tags,thumbnail',
-        ...draftKey,
       },
     })
 
@@ -73,7 +76,6 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
       props: {
         blog,
         tagList,
-        ...draftKey,
         domain: process.env.DOMAIN_NAME,
       },
       revalidate: 60,
@@ -84,7 +86,13 @@ export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
 }
 
 const Page: NextPage<PageProps> = (props) => {
-  const { blog, tagList, draftKey, domain } = props
+  useEffect(() => {
+    mermaid.initialize({ startOnLoad: false, theme: 'dark' })
+    mermaid.init(undefined, '.language-mermaid')
+  }, [])
+
+  const { blog, tagList, domain } = props
+
   const router = useRouter()
   const fullPath = `${domain}${router.asPath}`
   const body = blog.body.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
@@ -104,14 +112,6 @@ const Page: NextPage<PageProps> = (props) => {
   return (
     <>
       <Layout tagList={tagList} meta={meta}>
-        {draftKey && (
-          <div>
-            現在プレビューモードで閲覧中です。
-            <Link href={`/api/exit-preview?id=${blog.id}`}>
-              <a>プレビューを解除</a>
-            </Link>
-          </div>
-        )}
         <div className='py-8 md:px-8'>
           <div className='bg-white md:rounded-lg'>
             <div className='relative'>
@@ -152,7 +152,11 @@ const Page: NextPage<PageProps> = (props) => {
               )}
             </div>
             <div className='p-4 md:p-8'>
-              <ReactMarkdown className='prose overflow-hidden'>{blog.body}</ReactMarkdown>
+              <ReactMarkdown
+                className='prose overflow-hidden'
+              >
+                {blog.body}
+              </ReactMarkdown>
             </div>
             <div className='flex justify-center'>
               <div className='p-2'>
