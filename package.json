@@ -5,7 +5,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "pw-install": "playwright install",
     "lint": "next lint --dir src",
     "lint:fix": "eslint src --ext .js,jsx,.ts,.tsx --fix",
     "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'"
@@ -13,11 +12,13 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@tailwindcss/typography": "^0.5.9",
+    "chrome-aws-lambda": "^9.1.0",
     "d": "^1.0.1",
     "microcms-js-sdk": "^2.4.0",
     "moment": "^2.29.4",
     "next": "^13.4.4",
-    "playwright": "^1.35.1",
+    "playwright-aws-lambda": "^0.10.0",
+    "playwright-core": "^1.35.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.7",

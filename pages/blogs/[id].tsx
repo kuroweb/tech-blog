@@ -43,7 +43,11 @@ type StaticProps = {
 
 type PageProps = InferGetStaticPropsType<typeof getStaticProps>
 
+import chrome from 'chrome-aws-lambda'
+
 const markdownToHtml = async (markdown: string) => {
+  console.log(await chrome.executablePath)
+
   const result = await remark()
     .use(remarkParse)
     .use(remarkRehype)
@@ -54,6 +58,9 @@ const markdownToHtml = async (markdown: string) => {
         flowchart: { htmlLabels: false },
         class: { htmlLabels: false },
       },
+      launchOptions: {
+        executablePath: await chrome.executablePath
+      }
     })
     .process(markdown)
   return result.toString()
